@@ -73,11 +73,12 @@ def generate_peripheral(peripheral, compatible, reg_name, regmap_path):
     reg_dict = peripheral.get_reg()
     reg_pair = reg_dict.get_by_name(reg_name)
     reg_desc = compatible + """,""" + reg_name
+    per_name = get_name_as_id(peripheral.name)
     print("Emitting registers for '" + peripheral.name + "' soc peripheral node")
 
     return """\
             <peripheral>
-              <name>""" + peripheral.name + """_""" + "{:X}".format(peripheral.address) + """</name>
+              <name>""" + per_name + """_""" + "{:X}".format(peripheral.address) + """</name>
               <description>From """ + reg_desc + """ peripheral generator</description>
               <baseAddress>0x""" + "{:X}".format(reg_pair[0]) + """</baseAddress>
               <addressBlock>
