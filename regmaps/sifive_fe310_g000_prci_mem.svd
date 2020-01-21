@@ -1,0 +1,229 @@
+<registers>
+  <register>
+    <name>hfrosccfg</name>
+    <description>Ring Oscillator Configuration and Status</description>
+    <addressOffset>0x0</addressOffset>
+    <fields>
+      <field>
+        <name>hfroscdiv</name>
+        <description>Ring Oscillator Divider Register</description>
+        <bitRange>[5:0]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_15_6</name>
+        <description>Field reserved_15_6</description>
+        <bitRange>[15:6]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>hfrosctrim</name>
+        <description>Ring Oscillator Trim Register</description>
+        <bitRange>[20:16]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_29_21</name>
+        <description>Field reserved_29_21</description>
+        <bitRange>[29:21]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>hfroscen</name>
+        <description>Ring Oscillator Enable</description>
+        <bitRange>[30:30]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>hfroscrdy</name>
+        <description>Ring Oscillator Ready</description>
+        <bitRange>[31:31]</bitRange>
+        <access>read-only</access>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>hfxosccfg</name>
+    <description>Crystal Oscillator Configuration and Status</description>
+    <addressOffset>0x4</addressOffset>
+    <fields>
+      <field>
+        <name>reserved_29_0</name>
+        <description>Field reserved_29_0</description>
+        <bitRange>[29:0]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>hfxoscen</name>
+        <description>Crystal Oscillator Enable</description>
+        <bitRange>[30:30]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>hfxoscrdy</name>
+        <description>Crystal Oscillator Ready</description>
+        <bitRange>[31:31]</bitRange>
+        <access>read-only</access>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>pllcfg</name>
+    <description>PLL Configuration and Status</description>
+    <addressOffset>0x8</addressOffset>
+    <fields>
+      <field>
+        <name>pllr</name>
+        <description>PLL R Value</description>
+        <bitRange>[2:0]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_3_3</name>
+        <description>Field reserved_3_3</description>
+        <bitRange>[3:3]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>pllf</name>
+        <description>PLL F Value</description>
+        <bitRange>[9:4]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>pllq</name>
+        <description>PLL Q Value</description>
+        <bitRange>[11:10]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_15_12</name>
+        <description>Field reserved_15_12</description>
+        <bitRange>[15:12]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>pllsel</name>
+        <description>PLL Select</description>
+        <bitRange>[16:16]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>pllrefsel</name>
+        <description>PLL Reference Select</description>
+        <bitRange>[17:17]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>pllbypass</name>
+        <description>PLL Bypass</description>
+        <bitRange>[18:18]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_30_19</name>
+        <description>Field reserved_30_19</description>
+        <bitRange>[30:19]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>plllock</name>
+        <description>PLL Lock</description>
+        <bitRange>[31:31]</bitRange>
+        <access>read-only</access>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>plloutdiv</name>
+    <description>PLL Final Divide Configuration</description>
+    <addressOffset>0xC</addressOffset>
+    <fields>
+      <field>
+        <name>plloutdiv</name>
+        <description>PLL Final Divider Value</description>
+        <bitRange>[5:0]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_7_6</name>
+        <description>Field reserved_7_6</description>
+        <bitRange>[7:6]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>plloutdivby1</name>
+        <description>PLL Final Divide By 1</description>
+        <bitRange>[13:8]</bitRange>
+        <access>read-write</access>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>procmoncfg</name>
+    <description>Process Monitor Configuration and Status</description>
+    <addressOffset>0xF0</addressOffset>
+    <fields>
+      <field>
+        <name>procmon_div_sel</name>
+        <description>Proccess Monitor Divider</description>
+        <bitRange>[4:0]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_7_5</name>
+        <description>Field reserved_7_5</description>
+        <bitRange>[7:5]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>procmon_delay_sel</name>
+        <description>Process Monitor Delay Selector</description>
+        <bitRange>[12:8]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_15_13</name>
+        <description>Field reserved_15_13</description>
+        <bitRange>[15:13]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>procmon_en</name>
+        <description>Process Monitor Enable</description>
+        <bitRange>[16:16]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_23_17</name>
+        <description>Field reserved_23_17</description>
+        <bitRange>[23:17]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>procomon_sel</name>
+        <description>Process Monitor Select</description>
+        <bitRange>[25:24]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>reserved_27_26</name>
+        <description>Field reserved_27_26</description>
+        <bitRange>[27:26]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>reserved_28_28</name>
+        <description>Field reserved_28_28</description>
+        <bitRange>[28:28]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>reserved_31_29</name>
+        <description>Field reserved_31_29</description>
+        <bitRange>[31:29]</bitRange>
+        <access>read-only</access>
+      </field>
+    </fields>
+  </register>
+</registers>

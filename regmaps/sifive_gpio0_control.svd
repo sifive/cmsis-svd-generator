@@ -1,0 +1,104 @@
+<registers>
+  <register>
+    <name>input_val</name>
+    <displayName></displayName>
+    <description>Pin value</description>
+    <addressOffset>0x0</addressOffset>
+  </register>
+  <register>
+    <name>input_en</name>
+    <displayName></displayName>
+    <description>Pin input enable</description>
+    <addressOffset>0x4</addressOffset>
+  </register>
+  <register>
+    <name>output_en</name>
+    <displayName></displayName>
+    <description>Pin output enable</description>
+    <addressOffset>0x8</addressOffset>
+  </register>
+  <register>
+    <name>output_val</name>
+    <displayName></displayName>
+    <description>Output value</description>
+    <addressOffset>0xC</addressOffset>
+  </register>
+  <register>
+    <name>pue</name>
+    <displayName></displayName>
+    <description>Internal pull-up enable</description>
+    <addressOffset>0x10</addressOffset>
+  </register>
+  <register>
+    <name>ds</name>
+    <displayName></displayName>
+    <description>Pin drive strength</description>
+    <addressOffset>0x14</addressOffset>
+  </register>
+  <register>
+    <name>rise_ie</name>
+    <displayName></displayName>
+    <description>Rise interrupt enable</description>
+    <addressOffset>0x18</addressOffset>
+  </register>
+  <register>
+    <name>rise_ip</name>
+    <displayName></displayName>
+    <description>Rise interrupt pending</description>
+    <addressOffset>0x1C</addressOffset>
+  </register>
+  <register>
+    <name>fall_ie</name>
+    <displayName></displayName>
+    <description>Fall interrupt enable</description>
+    <addressOffset>0x20</addressOffset>
+  </register>
+  <register>
+    <name>fall_ip</name>
+    <displayName></displayName>
+    <description>Fall interrupt pending</description>
+    <addressOffset>0x24</addressOffset>
+  </register>
+  <register>
+    <name>high_ie</name>
+    <displayName></displayName>
+    <description>High interrupt enable</description>
+    <addressOffset>0x28</addressOffset>
+  </register>
+  <register>
+    <name>high_ip</name>
+    <displayName></displayName>
+    <description>High interrupt pending</description>
+    <addressOffset>0x2C</addressOffset>
+  </register>
+  <register>
+    <name>low_ie</name>
+    <displayName></displayName>
+    <description>Low interrupt enable</description>
+    <addressOffset>0x30</addressOffset>
+  </register>
+  <register>
+    <name>low_ip</name>
+    <displayName></displayName>
+    <description>Low interrupt pending</description>
+    <addressOffset>0x34</addressOffset>
+  </register>
+  <register>
+    <name>iof_en</name>
+    <displayName></displayName>
+    <description>I/O function enable</description>
+    <addressOffset>0x38</addressOffset>
+  </register>
+  <register>
+    <name>iof_sel</name>
+    <displayName></displayName>
+    <description>I/O function select</description>
+    <addressOffset>0x3C</addressOffset>
+  </register>
+  <register>
+    <name>out_xor</name>
+    <displayName></displayName>
+    <description>Output XOR (invert)</description>
+    <addressOffset>0x40</addressOffset>
+  </register>
+</registers>

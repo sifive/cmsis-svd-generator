@@ -1,0 +1,48 @@
+<registers>
+  <register>
+    <name>Config</name>
+    <description>Information about the Cache Configuration</description>
+    <addressOffset>0x0</addressOffset>
+    <fields>
+      <field>
+        <name>Banks</name>
+        <description>Number of banks in the cache</description>
+        <bitRange>[7:0]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>Ways</name>
+        <description>Number of ways per bank</description>
+        <bitRange>[15:8]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>lgSets</name>
+        <description>Base-2 logarithm of the sets per bank</description>
+        <bitRange>[23:16]</bitRange>
+        <access>read-only</access>
+      </field>
+      <field>
+        <name>lgBlockBytes</name>
+        <description>Base-2 logarithm of the bytes per cache block</description>
+        <bitRange>[31:24]</bitRange>
+        <access>read-only</access>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>WayEnable</name>
+    <description>The index of the largest way which has been enabled. May only be increased.</description>
+    <addressOffset>0x8</addressOffset>
+  </register>
+  <register>
+    <name>Flush64</name>
+    <description>Flush the phsyical address equal to the 64-bit written data from the cache</description>
+    <addressOffset>0x200</addressOffset>
+  </register>
+  <register>
+    <name>Flush32</name>
+    <description>Flush the physical address equal to the 32-bit written data shifted left by 4 from the cache</description>
+    <addressOffset>0x240</addressOffset>
+  </register>
+</registers>
