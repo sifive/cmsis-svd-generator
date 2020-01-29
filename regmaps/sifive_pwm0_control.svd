@@ -1,7 +1,6 @@
 <registers>
   <register>
     <name>pwmcfg</name>
-    <displayName>PWM Configuration Register</displayName>
     <description>PWM configuration register</description>
     <addressOffset>0x0</addressOffset>
     <fields>
@@ -10,12 +9,6 @@
         <description>PWM Counter scale</description>
         <bitRange>[3:0]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>Reserved_7_4</name>
-        <description>Field Reserved_7_4</description>
-        <bitRange>[7:4]</bitRange>
-        <access>read-only</access>
       </field>
       <field>
         <name>pwmsticky</name>
@@ -36,12 +29,6 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>Reserved_11_11</name>
-        <description>Field Reserved_11_11</description>
-        <bitRange>[11:11]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
         <name>pwmenalways</name>
         <description>PWM enable always - run continuously</description>
         <bitRange>[12:12]</bitRange>
@@ -52,12 +39,6 @@
         <description>PWM enable one shot - run one cycle</description>
         <bitRange>[13:13]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>Reserved_15_14</name>
-        <description>Field Reserved_15_14</description>
-        <bitRange>[15:14]</bitRange>
-        <access>read-only</access>
       </field>
       <field>
         <name>pwmcmp0center</name>
@@ -158,14 +139,7 @@
     </fields>
   </register>
   <register>
-    <name>Reserved_4</name>
-    <displayName></displayName>
-    <description>Register Reserved_4</description>
-    <addressOffset>0x4</addressOffset>
-  </register>
-  <register>
     <name>pwmcount</name>
-    <displayName>PWM Count Register</displayName>
     <description>PWM count register</description>
     <addressOffset>0x8</addressOffset>
     <fields>
@@ -175,23 +149,10 @@
         <bitRange>[30:0]</bitRange>
         <access>read-write</access>
       </field>
-      <field>
-        <name>Reserved_31_31</name>
-        <description>Field Reserved_31_31</description>
-        <bitRange>[31:31]</bitRange>
-        <access>read-only</access>
-      </field>
     </fields>
   </register>
   <register>
-    <name>Reserved_C</name>
-    <displayName></displayName>
-    <description>Register Reserved_C</description>
-    <addressOffset>0xC</addressOffset>
-  </register>
-  <register>
     <name>pwms</name>
-    <displayName>Scaled PWM Count Register</displayName>
     <description>Scaled PWM count register</description>
     <addressOffset>0x10</addressOffset>
     <fields>
@@ -201,35 +162,10 @@
         <bitRange>[15:0]</bitRange>
         <access>read-write</access>
       </field>
-      <field>
-        <name>Reserved_31_16</name>
-        <description>Field Reserved_31_16</description>
-        <bitRange>[31:16]</bitRange>
-        <access>read-only</access>
-      </field>
     </fields>
   </register>
   <register>
-    <name>Reserved_14</name>
-    <displayName></displayName>
-    <description>Register Reserved_14</description>
-    <addressOffset>0x14</addressOffset>
-  </register>
-  <register>
-    <name>Reserved_18</name>
-    <displayName></displayName>
-    <description>Register Reserved_18</description>
-    <addressOffset>0x18</addressOffset>
-  </register>
-  <register>
-    <name>Reserved_1C</name>
-    <displayName></displayName>
-    <description>Register Reserved_1C</description>
-    <addressOffset>0x1C</addressOffset>
-  </register>
-  <register>
     <name>pwmcmp0</name>
-    <displayName>PWM 0 Compare Register</displayName>
     <description>PWM 0 compare register</description>
     <addressOffset>0x20</addressOffset>
     <fields>
@@ -239,17 +175,10 @@
         <bitRange>[15:0]</bitRange>
         <access>read-write</access>
       </field>
-      <field>
-        <name>Reserved_31_16</name>
-        <description>Field Reserved_31_16</description>
-        <bitRange>[31:16]</bitRange>
-        <access>read-only</access>
-      </field>
     </fields>
   </register>
   <register>
     <name>pwmcmp1</name>
-    <displayName>PWM 1 Compare Register</displayName>
     <description>PWM 1 compare register</description>
     <addressOffset>0x24</addressOffset>
     <fields>
@@ -259,17 +188,10 @@
         <bitRange>[15:0]</bitRange>
         <access>read-write</access>
       </field>
-      <field>
-        <name>Reserved_31_16</name>
-        <description>Field Reserved_31_16</description>
-        <bitRange>[31:16]</bitRange>
-        <access>read-only</access>
-      </field>
     </fields>
   </register>
   <register>
     <name>pwmcmp2</name>
-    <displayName>PWM 2 Compare Register</displayName>
     <description>PWM 2 compare register</description>
     <addressOffset>0x28</addressOffset>
     <fields>
@@ -279,17 +201,10 @@
         <bitRange>[15:0]</bitRange>
         <access>read-write</access>
       </field>
-      <field>
-        <name>Reserved_31_16</name>
-        <description>Field Reserved_31_16</description>
-        <bitRange>[31:16]</bitRange>
-        <access>read-only</access>
-      </field>
     </fields>
   </register>
   <register>
     <name>pwmcmp3</name>
-    <displayName>PWM 3 Compare Register</displayName>
     <description>PWM 3 compare register</description>
     <addressOffset>0x2C</addressOffset>
     <fields>
@@ -298,12 +213,6 @@
         <description>PWM 3 Compare Value</description>
         <bitRange>[15:0]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>Reserved_31_16</name>
-        <description>Field Reserved_31_16</description>
-        <bitRange>[31:16]</bitRange>
-        <access>read-only</access>
       </field>
     </fields>
   </register>

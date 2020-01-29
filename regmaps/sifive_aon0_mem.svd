@@ -91,12 +91,6 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>reserved_7_4</name>
-        <description>Field reserved_7_4</description>
-        <bitRange>[7:4]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
         <name>wdogrsten</name>
         <description>Controls whether the comparator output can set the wdogrst bit and hence cause a full reset.</description>
         <bitRange>[8:8]</bitRange>
@@ -107,18 +101,6 @@
         <description>Reset counter to zero after match.</description>
         <bitRange>[9:9]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_10_10</name>
-        <description>Field reserved_10_10</description>
-        <bitRange>[10:10]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_11_11</name>
-        <description>Field reserved_11_11</description>
-        <bitRange>[11:11]</bitRange>
-        <access>read-only</access>
       </field>
       <field>
         <name>wdogenalways</name>
@@ -133,58 +115,10 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>reserved_15_14</name>
-        <description>Field reserved_15_14</description>
-        <bitRange>[15:14]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_16_16</name>
-        <description>Field reserved_16_16</description>
-        <bitRange>[16:16]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_19_17</name>
-        <description>Field reserved_19_17</description>
-        <bitRange>[19:17]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_20_20</name>
-        <description>Field reserved_20_20</description>
-        <bitRange>[20:20]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_23_21</name>
-        <description>Field reserved_23_21</description>
-        <bitRange>[23:21]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_24_24</name>
-        <description>Field reserved_24_24</description>
-        <bitRange>[24:24]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_27_25</name>
-        <description>Field reserved_27_25</description>
-        <bitRange>[27:25]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
         <name>wdogip0</name>
         <description>Interrupt 0 Pending</description>
         <bitRange>[28:28]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_31_29</name>
-        <description>Field reserved_31_29</description>
-        <bitRange>[31:29]</bitRange>
-        <access>read-only</access>
       </field>
     </fields>
   </register>
@@ -192,11 +126,6 @@
     <name>wdogcount</name>
     <description>Counter Register</description>
     <addressOffset>0x8</addressOffset>
-  </register>
-  <register>
-    <name>reserved_C</name>
-    <description>Register reserved_C</description>
-    <addressOffset>0xC</addressOffset>
   </register>
   <register>
     <name>wdogs</name>
@@ -230,100 +159,16 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>reserved_7_4</name>
-        <description>Field reserved_7_4</description>
-        <bitRange>[7:4]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_8_8</name>
-        <description>Field reserved_8_8</description>
-        <bitRange>[8:8]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_9_9</name>
-        <description>Field reserved_9_9</description>
-        <bitRange>[9:9]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_10_10</name>
-        <description>Field reserved_10_10</description>
-        <bitRange>[10:10]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_11_11</name>
-        <description>Field reserved_11_11</description>
-        <bitRange>[11:11]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
         <name>rtcenalways</name>
         <description>Enable Always - run continuously</description>
         <bitRange>[12:12]</bitRange>
         <access>read-write</access>
       </field>
       <field>
-        <name>reserved_13_13</name>
-        <description>Field reserved_13_13</description>
-        <bitRange>[13:13]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_15_14</name>
-        <description>Field reserved_15_14</description>
-        <bitRange>[15:14]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_16_16</name>
-        <description>Field reserved_16_16</description>
-        <bitRange>[16:16]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_19_17</name>
-        <description>Field reserved_19_17</description>
-        <bitRange>[19:17]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_20_20</name>
-        <description>Field reserved_20_20</description>
-        <bitRange>[20:20]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_23_21</name>
-        <description>Field reserved_23_21</description>
-        <bitRange>[23:21]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_24_24</name>
-        <description>Field reserved_24_24</description>
-        <bitRange>[24:24]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_27_25</name>
-        <description>Field reserved_27_25</description>
-        <bitRange>[27:25]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
         <name>rtcip0</name>
         <description>Interrupt 0 Pending</description>
         <bitRange>[28:28]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_31_29</name>
-        <description>Field reserved_31_29</description>
-        <bitRange>[31:29]</bitRange>
-        <access>read-only</access>
       </field>
     </fields>
   </register>
@@ -341,16 +186,6 @@
     <name>rtcs</name>
     <description>Scaled value of Counter</description>
     <addressOffset>0x50</addressOffset>
-  </register>
-  <register>
-    <name>reserved_58</name>
-    <description>Register reserved_58</description>
-    <addressOffset>0x58</addressOffset>
-  </register>
-  <register>
-    <name>reserved_5C</name>
-    <description>Register reserved_5C</description>
-    <addressOffset>0x5C</addressOffset>
   </register>
   <register>
     <name>rtccmp0</name>
@@ -458,99 +293,50 @@
     <addressOffset>0x14C</addressOffset>
   </register>
   <register>
-    <name>AONCFG</name>
+    <name>aoncfg</name>
     <description>AON Block Configuration Information</description>
     <addressOffset>0x300</addressOffset>
     <fields>
       <field>
-        <name>HAS_BANDGAP</name>
+        <name>has_bandgap</name>
         <description>Bandgap feature is present</description>
         <bitRange>[0:0]</bitRange>
         <access>read-only</access>
       </field>
       <field>
-        <name>HAS_BOD</name>
+        <name>has_bod</name>
         <description>Brownout detector feature is present</description>
         <bitRange>[1:1]</bitRange>
         <access>read-only</access>
       </field>
       <field>
-        <name>HAS_LFROSC</name>
+        <name>has_lfrosc</name>
         <description>Low Frequency Ring Oscillator feature is present</description>
         <bitRange>[2:2]</bitRange>
         <access>read-only</access>
       </field>
       <field>
-        <name>HAS_LFRCOSC</name>
+        <name>has_lfrcosc</name>
         <description>Low Frequency RC Oscillator feature is present</description>
         <bitRange>[3:3]</bitRange>
         <access>read-only</access>
       </field>
       <field>
-        <name>HAS_LFXOSC</name>
+        <name>has_lfxosc</name>
         <description>Low Frequency Crystal Oscillator feature is present</description>
         <bitRange>[4:4]</bitRange>
         <access>read-only</access>
       </field>
       <field>
-        <name>HAS_POR</name>
+        <name>has_por</name>
         <description>Power-On-Reset feature is present</description>
         <bitRange>[5:5]</bitRange>
         <access>read-only</access>
       </field>
       <field>
-        <name>HAS_LDO</name>
+        <name>has_ldo</name>
         <description>Low Dropout Regulator feature is present</description>
         <bitRange>[6:6]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_31_7</name>
-        <description>Field reserved_31_7</description>
-        <bitRange>[31:7]</bitRange>
-        <access>read-only</access>
-      </field>
-    </fields>
-  </register>
-  <register>
-    <name>SiFiveBandgap</name>
-    <description>Bandgap configuration</description>
-    <addressOffset>0x210</addressOffset>
-    <fields>
-      <field>
-        <name>EN</name>
-        <description>Bandgap enable</description>
-        <bitRange>[0:0]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_7_1</name>
-        <description>Field reserved_7_1</description>
-        <bitRange>[7:1]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>DIS</name>
-        <description>Bandgap disable</description>
-        <bitRange>[8:8]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_15_9</name>
-        <description>Field reserved_15_9</description>
-        <bitRange>[15:9]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>TRIM</name>
-        <description>Bandgap trim value</description>
-        <bitRange>[19:16]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_23_20</name>
-        <description>Field reserved_23_20</description>
-        <bitRange>[23:20]</bitRange>
         <access>read-only</access>
       </field>
     </fields>
@@ -567,22 +353,10 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>reserved_15_6</name>
-        <description>Field reserved_15_6</description>
-        <bitRange>[15:6]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
         <name>lfrosctrim</name>
         <description>Ring Oscillator Trim Register</description>
         <bitRange>[20:16]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_29_21</name>
-        <description>Field reserved_29_21</description>
-        <bitRange>[29:21]</bitRange>
-        <access>read-only</access>
       </field>
       <field>
         <name>lfroscen</name>
@@ -610,22 +384,16 @@
         <access>read-write</access>
         <enumeratedValues>
           <enumeratedValue>
-            <name>INTERNAL</name>
+            <name>internal</name>
             <description>Use internal LF clock source</description>
             <value>0</value>
           </enumeratedValue>
           <enumeratedValue>
-            <name>EXTERNAL</name>
+            <name>external</name>
             <description>Use external LF clock source</description>
             <value>1</value>
           </enumeratedValue>
         </enumeratedValues>
-      </field>
-      <field>
-        <name>reserved_30_1</name>
-        <description>Field reserved_30_1</description>
-        <bitRange>[30:1]</bitRange>
-        <access>read-only</access>
       </field>
       <field>
         <name>lfextclk_mux_status</name>
@@ -634,12 +402,12 @@
         <access>read-only</access>
         <enumeratedValues>
           <enumeratedValue>
-            <name>EXTERNAL</name>
+            <name>external</name>
             <description>Use external LF clock source</description>
             <value>0</value>
           </enumeratedValue>
           <enumeratedValue>
-            <name>SW</name>
+            <name>sw</name>
             <description>Use clock source selected by lfextclk_sel</description>
             <value>1</value>
           </enumeratedValue>

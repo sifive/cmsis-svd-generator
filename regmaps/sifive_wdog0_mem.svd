@@ -11,12 +11,6 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>reserved_7_4</name>
-        <description>Field reserved_7_4</description>
-        <bitRange>[7:4]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
         <name>wdogrsten</name>
         <description>Controls whether the comparator output can set the wdogrst bit and hence cause a full reset.</description>
         <bitRange>[8:8]</bitRange>
@@ -27,18 +21,6 @@
         <description>Reset counter to zero after match.</description>
         <bitRange>[9:9]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_10_10</name>
-        <description>Field reserved_10_10</description>
-        <bitRange>[10:10]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_11_11</name>
-        <description>Field reserved_11_11</description>
-        <bitRange>[11:11]</bitRange>
-        <access>read-only</access>
       </field>
       <field>
         <name>wdogenalways</name>
@@ -53,58 +35,10 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>reserved_15_14</name>
-        <description>Field reserved_15_14</description>
-        <bitRange>[15:14]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_16_16</name>
-        <description>Field reserved_16_16</description>
-        <bitRange>[16:16]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_19_17</name>
-        <description>Field reserved_19_17</description>
-        <bitRange>[19:17]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_20_20</name>
-        <description>Field reserved_20_20</description>
-        <bitRange>[20:20]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_23_21</name>
-        <description>Field reserved_23_21</description>
-        <bitRange>[23:21]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_24_24</name>
-        <description>Field reserved_24_24</description>
-        <bitRange>[24:24]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
-        <name>reserved_27_25</name>
-        <description>Field reserved_27_25</description>
-        <bitRange>[27:25]</bitRange>
-        <access>read-only</access>
-      </field>
-      <field>
         <name>wdogip0</name>
         <description>Interrupt 0 Pending</description>
         <bitRange>[28:28]</bitRange>
         <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_31_29</name>
-        <description>Field reserved_31_29</description>
-        <bitRange>[31:29]</bitRange>
-        <access>read-only</access>
       </field>
     </fields>
   </register>
@@ -112,11 +46,6 @@
     <name>wdogcount</name>
     <description>Counter Register</description>
     <addressOffset>0x8</addressOffset>
-  </register>
-  <register>
-    <name>reserved_C</name>
-    <description>Register reserved_C</description>
-    <addressOffset>0xC</addressOffset>
   </register>
   <register>
     <name>wdogs</name>

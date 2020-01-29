@@ -1,28 +1,19 @@
 <registers>
   <register>
     <name>prescale_low</name>
-    <displayName>Prescale Low Register</displayName>
     <description>Clock Prescale register lo-byte</description>
     <addressOffset>0x0</addressOffset>
   </register>
   <register>
     <name>prescale_high</name>
-    <displayName>Prescale High Register</displayName>
     <description>Clock Prescale register hi-byte</description>
     <addressOffset>0x4</addressOffset>
   </register>
   <register>
     <name>control</name>
-    <displayName>Control Register</displayName>
     <description>Control register</description>
     <addressOffset>0x8</addressOffset>
     <fields>
-      <field>
-        <name>reserved_lower</name>
-        <description>Reserved lower bits</description>
-        <bitRange>[5:0]</bitRange>
-        <access>read-write</access>
-      </field>
       <field>
         <name>en</name>
         <description>I2C core enable bit</description>
@@ -35,23 +26,15 @@
         <bitRange>[7:7]</bitRange>
         <access>read-write</access>
       </field>
-      <field>
-        <name>reserved_upper</name>
-        <description>Reserved upper bits</description>
-        <bitRange>[31:8]</bitRange>
-        <access>read-write</access>
-      </field>
     </fields>
   </register>
   <register>
     <name>transmit__receive</name>
-    <displayName>Tx and Rx Data Register</displayName>
     <description>Transmit and receive data byte register</description>
     <addressOffset>0xC</addressOffset>
   </register>
   <register>
     <name>command__status</name>
-    <displayName>Command and Status Register</displayName>
     <description>Command write and status read register</description>
     <addressOffset>0x10</addressOffset>
     <fields>
@@ -101,12 +84,6 @@
         <name>wr_sta__rd_rxack</name>
         <description>Generate start and Got ACK/NACK</description>
         <bitRange>[7:7]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
-        <name>reserved_31_8</name>
-        <description>Reserved bits</description>
-        <bitRange>[31:8]</bitRange>
         <access>read-write</access>
       </field>
     </fields>

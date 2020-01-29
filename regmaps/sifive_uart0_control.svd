@@ -1,7 +1,6 @@
 <registers>
   <register>
     <name>txdata</name>
-    <displayName>Transmit Data Register</displayName>
     <description>Transmit data register</description>
     <addressOffset>0x0</addressOffset>
     <fields>
@@ -9,12 +8,6 @@
         <name>data</name>
         <description>Transmit data</description>
         <bitRange>[7:0]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
-        <name>Reserved_30_8</name>
-        <description>Field Reserved_30_8</description>
-        <bitRange>[30:8]</bitRange>
         <access>read-write</access>
       </field>
       <field>
@@ -27,7 +20,6 @@
   </register>
   <register>
     <name>rxdata</name>
-    <displayName>Receive Data Register</displayName>
     <description>Receive data register</description>
     <addressOffset>0x4</addressOffset>
     <fields>
@@ -36,12 +28,6 @@
         <description>Received data</description>
         <bitRange>[7:0]</bitRange>
         <access>read-only</access>
-      </field>
-      <field>
-        <name>Reserved_30_8</name>
-        <description>Field Reserved_30_8</description>
-        <bitRange>[30:8]</bitRange>
-        <access>read-write</access>
       </field>
       <field>
         <name>empty</name>
@@ -53,7 +39,6 @@
   </register>
   <register>
     <name>txctrl</name>
-    <displayName>Transmit Control Register</displayName>
     <description>Transmit control register</description>
     <addressOffset>0x8</addressOffset>
     <fields>
@@ -70,28 +55,15 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>Reserved_15_2</name>
-        <description>Field Reserved_15_2</description>
-        <bitRange>[15:2]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
         <name>txcnt</name>
         <description>Transmit watermark level</description>
         <bitRange>[18:16]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
-        <name>Reserved_31_19</name>
-        <description>Field Reserved_31_19</description>
-        <bitRange>[31:19]</bitRange>
         <access>read-write</access>
       </field>
     </fields>
   </register>
   <register>
     <name>rxctrl</name>
-    <displayName>Receive Control Register</displayName>
     <description>Receive control register</description>
     <addressOffset>0xC</addressOffset>
     <fields>
@@ -102,28 +74,15 @@
         <access>read-write</access>
       </field>
       <field>
-        <name>Reserved_15_1</name>
-        <description>Field Reserved_15_1</description>
-        <bitRange>[15:1]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
         <name>rxcnt</name>
         <description>Receive watermark level</description>
         <bitRange>[18:16]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
-        <name>Reserved_31_19</name>
-        <description>Field Reserved_31_19</description>
-        <bitRange>[31:19]</bitRange>
         <access>read-write</access>
       </field>
     </fields>
   </register>
   <register>
     <name>ie</name>
-    <displayName>UART Interrupt Enable Register</displayName>
     <description>UART interrupt enable</description>
     <addressOffset>0x10</addressOffset>
     <fields>
@@ -139,17 +98,10 @@
         <bitRange>[1:1]</bitRange>
         <access>read-write</access>
       </field>
-      <field>
-        <name>Reserved_31_2</name>
-        <description>Field Reserved_31_2</description>
-        <bitRange>[31:2]</bitRange>
-        <access>read-write</access>
-      </field>
     </fields>
   </register>
   <register>
     <name>ip</name>
-    <displayName>UART Interrupt Pending Register</displayName>
     <description>UART interrupt pending</description>
     <addressOffset>0x14</addressOffset>
     <fields>
@@ -165,17 +117,10 @@
         <bitRange>[1:1]</bitRange>
         <access>read-only</access>
       </field>
-      <field>
-        <name>Reserved_31_2</name>
-        <description>Field Reserved_31_2</description>
-        <bitRange>[31:2]</bitRange>
-        <access>read-only</access>
-      </field>
     </fields>
   </register>
   <register>
     <name>div</name>
-    <displayName>Baud Rate Divisor Register</displayName>
     <description>Baud rate divisor</description>
     <addressOffset>0x18</addressOffset>
     <fields>
@@ -183,12 +128,6 @@
         <name>div</name>
         <description>Baud rate divisor.</description>
         <bitRange>[15:0]</bitRange>
-        <access>read-write</access>
-      </field>
-      <field>
-        <name>Reserved_31_16</name>
-        <description>Field Reserved_31_16</description>
-        <bitRange>[31:16]</bitRange>
         <access>read-write</access>
       </field>
     </fields>

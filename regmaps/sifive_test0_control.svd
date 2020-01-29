@@ -1,7 +1,6 @@
 <registers>
   <register>
     <name>finisher</name>
-    <displayName>Test Finisher Register</displayName>
     <description>Test finisher register</description>
     <addressOffset>0x0</addressOffset>
     <fields>
