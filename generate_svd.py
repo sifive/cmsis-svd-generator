@@ -64,29 +64,29 @@ def generate_peripherals(dts):
         if peripheral.get_field("compatible") is not None and \
             peripheral.get_field("reg-names") is not None:
             compatibles = peripheral.get_fields("compatible")
-            reg_names = peripheral.get_fields("reg-names")
+            regs = peripheral.get_fields("reg-names")
             for compatible in compatibles:
-                for reg_name in reg_names:
-                    regmap_name = get_name_as_id(compatible) + "_" + reg_name + ".svd"
+                for reg in regs:
+                    regmap_name = get_name_as_id(compatible) + "_" + reg + ".svd"
                     regmap_root = os.path.abspath(os.path.dirname(sys.argv[0]))
                     regmap_path = os.path.join(regmap_root, "regmaps", regmap_name)
                     if os.path.exists(regmap_path):
-                        txt += generate_peripheral(peripheral, compatible, idx[compatible], reg_name, regmap_path)
+                        ext = str(idx[compatible])
+                        txt += generate_peripheral(peripheral, compatible, ext, reg, regmap_path)
                         idx[compatible] += 1
 
     return txt
 
-def generate_peripheral(peripheral, compatible, idx, reg_name, regmap_path):
+def generate_peripheral(peripheral, compatible, ext, reg, regmap_path):
     """Generate xml string for peripheral"""
     reg_dict = peripheral.get_reg()
-    reg_pair = reg_dict.get_by_name(reg_name)
-    reg_desc = compatible + """,""" + reg_name
-    per_name = get_name_as_id(compatible)
+    reg_pair = reg_dict.get_by_name(reg)
+    reg_desc = compatible + """,""" + reg
     print("Emitting registers for '" + peripheral.name + "' soc peripheral node")
 
     return """\
             <peripheral>
-              <name>""" + per_name + """_""" + str(idx) + """</name>
+              <name>""" + get_name_as_id(compatible) + """_""" + ext + """</name>
               <description>From """ + reg_desc + """ peripheral generator</description>
               <baseAddress>0x""" + "{:X}".format(reg_pair[0]) + """</baseAddress>
               <addressBlock>
