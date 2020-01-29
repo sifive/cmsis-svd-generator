@@ -52,7 +52,13 @@ def generate_peripherals(dts):
     """Generate xml string for peripherals"""
     txt = ""
     soc = dts.get_by_path("/soc")
-    idx = 0
+    idx = {}
+
+    for peripheral in soc.child_nodes():
+        if peripheral.get_field("compatible") is not None:
+            compatibles = peripheral.get_fields("compatible")
+            for compatible in compatibles:
+                idx[compatible] = 0
 
     for peripheral in soc.child_nodes():
         if peripheral.get_field("compatible") is not None and \
@@ -65,8 +71,8 @@ def generate_peripherals(dts):
                     regmap_root = os.path.abspath(os.path.dirname(sys.argv[0]))
                     regmap_path = os.path.join(regmap_root, "regmaps", regmap_name)
                     if os.path.exists(regmap_path):
-                        txt += generate_peripheral(peripheral, compatible, idx, reg_name, regmap_path)
-                        idx += 1
+                        txt += generate_peripheral(peripheral, compatible, idx[compatible], reg_name, regmap_path)
+                        idx[compatible] += 1
 
     return txt
 
@@ -80,7 +86,7 @@ def generate_peripheral(peripheral, compatible, idx, reg_name, regmap_path):
 
     return """\
             <peripheral>
-              <name>""" + per_name + """__""" + str(idx) + """</name>
+              <name>""" + per_name + """_""" + str(idx) + """</name>
               <description>From """ + reg_desc + """ peripheral generator</description>
               <baseAddress>0x""" + "{:X}".format(reg_pair[0]) + """</baseAddress>
               <addressBlock>
