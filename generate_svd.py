@@ -11,6 +11,9 @@ import os
 import sys
 import inspect
 import pydevicetree
+from scripts.riscv_clint0_control import generate_registers_riscv_clint0
+from scripts.sifive_clic0_control import generate_registers_sifive_clic0
+from scripts.riscv_plic0_control import generate_registers_riscv_plic0
 
 def parse_arguments(argv):
     """Parse the arguments into a dictionary with argparse"""
@@ -48,6 +51,7 @@ def generate_device(dts):
         </device>
 """
 
+#pylint: disable=too-many-locals
 def generate_peripherals(dts):
     """Generate xml string for peripherals"""
     txt = ""
@@ -64,42 +68,56 @@ def generate_peripherals(dts):
         if peripheral.get_field("compatible") is not None and \
             peripheral.get_field("reg-names") is not None:
             compatibles = peripheral.get_fields("compatible")
-            regs = peripheral.get_fields("reg-names")
-            for compatible in compatibles:
-                for reg in regs:
-                    regmap_name = get_name_as_id(compatible) + "_" + reg + ".svd"
+            reg_names = peripheral.get_fields("reg-names")
+            for comp in compatibles:
+                for reg in reg_names:
                     regmap_root = os.path.abspath(os.path.dirname(sys.argv[0]))
+                    regmap_name = get_name_as_id(comp) + "_" + reg + ".svd"
                     regmap_path = os.path.join(regmap_root, "regmaps", regmap_name)
+                    script_name = get_name_as_id(comp) + "_" + reg + ".py"
+                    script_path = os.path.join(regmap_root, "scripts", script_name)
                     if os.path.exists(regmap_path):
-                        ext = str(idx[compatible])
-                        txt += generate_peripheral(peripheral, compatible, ext, reg, regmap_path)
-                        idx[compatible] += 1
+                        ext = str(idx[comp])
+                        txt += generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path)
+                        idx[comp] += 1
+                    elif os.path.exists(script_path):
+                        ext = str(idx[comp])
+                        txt += generate_peripheral(dts, peripheral, comp, ext, reg, script_path)
+                        idx[comp] += 1
 
     return txt
 
-def generate_peripheral(peripheral, compatible, ext, reg, regmap_path):
+#pylint: disable=too-many-arguments
+def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
     """Generate xml string for peripheral"""
     reg_dict = peripheral.get_reg()
     reg_pair = reg_dict.get_by_name(reg)
-    reg_desc = compatible + """,""" + reg
+    reg_desc = comp + """,""" + reg
     print("Emitting registers for '" + peripheral.name + "' soc peripheral node")
 
     return """\
             <peripheral>
-              <name>""" + get_name_as_id(compatible) + """_""" + ext + """</name>
+              <name>""" + get_name_as_id(comp) + """_""" + ext + """</name>
               <description>From """ + reg_desc + """ peripheral generator</description>
-              <baseAddress>0x""" + "{:X}".format(reg_pair[0]) + """</baseAddress>
+              <baseAddress>""" + "0x{:X}".format(reg_pair[0]) + """</baseAddress>
               <addressBlock>
                 <offset>0</offset>
-                <size>0x""" + "{:X}".format(reg_pair[1]) + """</size>
+                <size>""" + "0x{:X}".format(reg_pair[1]) + """</size>
                 <usage>registers</usage>
               </addressBlock>
-""" + generate_registers(regmap_path) + """\
+""" + generate_registers(dts, peripheral, regmap_path) + """\
             </peripheral>
 """
 
-def generate_registers(regmap_path):
-    """Generate xml string for registers from regmap file"""
+def generate_registers(dts, peripheral, regmap_path):
+    """Generate xml string for registers from regmap file or generator code"""
+    if regmap_path.endswith("riscv_clint0_control.py"):
+        return generate_registers_riscv_clint0(dts)
+    if regmap_path.endswith("sifive_clic0_control.py"):
+        return generate_registers_sifive_clic0(dts, peripheral)
+    if regmap_path.endswith("riscv_plic0_control.py"):
+        return generate_registers_riscv_plic0(dts, peripheral)
+
     regmap_file = open(regmap_path, "r")
     txt = ""
     for line in regmap_file:
