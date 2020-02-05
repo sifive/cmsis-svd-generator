@@ -79,8 +79,6 @@ def generate_registers_sifive_clic0_clicintip(intr, addr):
                   <description>CLICINTIP Register for interrupt id """ + intr + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>8</size>
-                  <resetValue>0x00</resetValue>
-                  <resetMask>0xFF</resetMask>
                 </register>
 """
 
@@ -92,8 +90,6 @@ def generate_registers_sifive_clic0_clicintie(intr, addr):
                   <description>CLICINTIE Register for interrupt id """ + intr + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>8</size>
-                  <resetValue>0x00</resetValue>
-                  <resetMask>0xFF</resetMask>
                 </register>
 """
 
@@ -105,8 +101,6 @@ def generate_registers_sifive_clic0_clicintctl(intr, addr):
                   <description>CLICINTCTL Register for interrupt id """ + intr + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>8</size>
-                  <resetValue>0x00</resetValue>
-                  <resetMask>0xFF</resetMask>
                 </register>
 """
 
@@ -118,8 +112,6 @@ def generate_registers_sifive_clic0_cliccfg(addr):
                   <description>CLICCFG Register</description>
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>8</size>
-                  <resetValue>0x00</resetValue>
-                  <resetMask>0xFF</resetMask>
                   <fields>
                     <field>
                       <name>nvbits</name>

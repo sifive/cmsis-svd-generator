@@ -43,8 +43,6 @@ def generate_device(dts):
           <width>32</width>
           <size>32</size>
           <access>read-write</access>
-          <resetValue>0x00000000</resetValue>
-          <resetMask>0xFFFFFFFF</resetMask>
           <peripherals>
 """ + generate_peripherals(dts) + """\
           </peripherals>

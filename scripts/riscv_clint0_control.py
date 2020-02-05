@@ -58,12 +58,10 @@ def generate_registers_riscv_clint0_mtimecmp(hart, addr):
     """Generate xml string for riscv_clint0 mtimecmp register for specific hart"""
     return """\
                 <register>
-                  <name>msip_""" + hart + """</name>
+                  <name>mtimecmp_""" + hart + """</name>
                   <description>MTIMECMP Register for hart """ + hart + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>64</size>
-                  <resetValue>0x0000000000000000</resetValue>
-                  <resetMask>0xFFFFFFFFFFFFFFFF</resetMask>
                 </register>
 """
 
@@ -75,7 +73,5 @@ def generate_registers_riscv_clint0_mtime(addr):
                   <description>MTIME Register</description>
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>64</size>
-                  <resetValue>0x0000000000000000</resetValue>
-                  <resetMask>0xFFFFFFFFFFFFFFFF</resetMask>
                 </register>
 """
