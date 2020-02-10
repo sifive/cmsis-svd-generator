@@ -15,7 +15,7 @@ def generatorDir = here
 # makeSVDGeneratorOptions takes the following parameters:
 #   - topDTSFile: The top-level Devicetree source file
 #   - otherDTSFiles: any other Devicetree source files included in the
-#                    heirarchy of Devicetree source files
+#                    hierarchy of Devicetree source files
 #   - outputFile: A string representing the path of the output file to
 #                 produce
 #######################################################################
