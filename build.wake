@@ -55,3 +55,24 @@ global def runSVDGenerator options =
 # This allows the python virtualenv to be created prior to running a build
 # with `wake preinstall Unit`.
 publish preinstall = (pythonRequirementsInstaller generatorDir), Nil
+
+#########################################################################
+# installSVDGenerator allows wake flows to install the CMSIS SVD
+# generator in customer deliveries and exclude all content which does not
+# directly contribute to the generation of customer BSP content.
+# It takes the following parameter
+#   - installPath: the path to install the generator in
+# For example, if you call `installSVDGenerator "scripts"`
+# the generator script will be found in
+#   scripts/cmsis-svd-generator/generate_svd.py
+#########################################################################
+global target installSVDGenerator installPath =
+  def generatorSources =
+    source "{here}/README.md",
+    source "{here}/LICENSE",
+    source "{here}/generate_svd.py",
+    sources "{here}/regmaps" `.*\.svd` ++
+    sources "{here}/scripts" `.*\.py`
+
+  mkdir installPath,
+  map (installIn installPath) generatorSources
