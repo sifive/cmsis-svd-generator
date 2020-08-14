@@ -31,9 +31,10 @@ global def runSVDGenerator options =
     # Python sources and the svd template files
     def generatorSources = sources here `.*\.(py|svd)`
     def dtsSources = topDTSFile, otherDTSFiles
-    generatorSources ++ dtsSources
+    def outDir = mkdir "{output}/.."
+    outDir, generatorSources ++ dtsSources
 
-  def outputs = options.getSVDGeneratorOptionsOutputFile, Nil
+  def output = options.getSVDGeneratorOptionsOutputFile
 
   def args =
     def output =
@@ -49,7 +50,7 @@ global def runSVDGenerator options =
   makePlan (pythonCommand "{generatorDir}/generate_svd.py" args) inputs
   | addPlanRelativePath "PYTHONPATH" generatorDir
   | addPythonRequirementsEnv generatorDir
-  | setPlanFnOutputs (\_ outputs)
+  | setPlanFnOutputs (\_ output, Nil)
   | runJob
 
 # This allows the python virtualenv to be created prior to running a build
