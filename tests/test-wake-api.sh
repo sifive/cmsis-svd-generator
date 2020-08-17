@@ -9,7 +9,7 @@ OUTPUT_PATH="build/cmsis-svd-generator/design.svd"
 
 wake --init .
 
-wake -v "runSVDGenerator (makeSVDGeneratorOptions (source \"${SPIKE_DTS_DIR}/design.dts\") (sources \"${SPIKE_DTS_DIR}\" \`core.dts\`) \"${OUTPUT_PATH}\")"
+wake -v -x "runSVDGenerator (makeSVDGeneratorOptions (source \"${SPIKE_DTS_DIR}/design.dts\") (sources \"${SPIKE_DTS_DIR}\" \`core.dts\`) \"${OUTPUT_PATH}\")"
 
 >&2 echo "$0: Checking for ${OUTPUT_PATH}"
 if [ ! -f ${OUTPUT_PATH} ] ; then
