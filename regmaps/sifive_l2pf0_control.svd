@@ -7,13 +7,13 @@
       <field>
         <name>enable</name>
         <description>Enable hardware prefetcher</description>
-        <bitRange>[0]</bitRange>
+        <bitRange>[0:0]</bitRange>
         <access>read-write</access>
       </field>
       <field>
         <name>disxpageoptm</name>
         <description>Cross Page optimization disable</description>
-        <bitRange>[1]</bitRange>
+        <bitRange>[1:1]</bitRange>
         <access>read-write</access>
       </field>
       <field>
@@ -37,7 +37,7 @@
       <field>
         <name>ageoutenable</name>
         <description>Ageout mechanism enable</description>
-        <bitRange>[20]</bitRange>
+        <bitRange>[20:20]</bitRange>
         <access>read-write</access>
       </field>
       <field>
@@ -49,7 +49,7 @@
       <field>
         <name>xpageenable</name>
         <description>Enable prefetches to cross pages</description>
-        <bitRange>[28]</bitRange>
+        <bitRange>[28:28]</bitRange>
         <access>read-write</access>
       </field>
     </fields>
