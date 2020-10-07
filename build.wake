@@ -74,6 +74,9 @@ global target installSVDGenerator installPath =
     source "{here}/generate_svd.py",
     sources "{here}/regmaps" `.*\.svd` ++
     sources "{here}/scripts" `.*\.py`
-
+  def installWithStructure dir file =
+    def oneDown = simplify "{here}/.."
+    def into = "{dir}/{relative oneDown file.getPathName}"
+    installAs into file
   mkdir installPath,
-  map (installIn installPath) generatorSources
+  map (installWithStructure installPath) generatorSources
