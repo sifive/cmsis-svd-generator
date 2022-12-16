@@ -1,17 +1,17 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 SiFive Inc.
+# Copyright (c) 2021 SiFive Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """
-This program generates CMSIS SVD xml for sifive clic0
+This program generates CMSIS SVD xml for sifive clic1
 """
 
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0_msip
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0_mtimecmp
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0_mtime
 
-def generate_registers_sifive_clic0(dts, peripheral):
-    """Generate xml string for registers for sifive_clic0 peripheral"""
+def generate_registers_sifive_clic1(dts, peripheral):
+    """Generate xml string for registers for sifive_clic1 peripheral"""
     numints = peripheral.get_fields("sifive,numints")[0]
     cpus = dts.get_by_path("/cpus")
     txt = """\
@@ -44,35 +44,39 @@ def generate_registers_sifive_clic0(dts, peripheral):
     addr = "0x{:X}".format(addr_num)
     txt += generate_registers_riscv_clint0_mtime(addr)
 
+    addr_num = 0x7FF000
+    addr = "0x{:X}".format(addr_num)
+    txt += generate_registers_sifive_clic1_disableclicclockgatefeature(addr)
+
     addr_num = 0x800000
     for intr_num in range(numints):
         intr = str(intr_num)
         addr = "0x{:X}".format(addr_num + intr_num)
-        txt += generate_registers_sifive_clic0_clicintip(intr, addr)
+        txt += generate_registers_sifive_clic1_clicintip(intr, addr)
 
     addr_num = 0x800400
     for intr_num in range(numints):
         intr = str(intr_num)
         addr = "0x{:X}".format(addr_num + intr_num)
-        txt += generate_registers_sifive_clic0_clicintie(intr, addr)
+        txt += generate_registers_sifive_clic1_clicintie(intr, addr)
 
     addr_num = 0x800800
     for intr_num in range(numints):
         intr = str(intr_num)
         addr = "0x{:X}".format(addr_num + intr_num)
-        txt += generate_registers_sifive_clic0_clicintctl(intr, addr)
+        txt += generate_registers_sifive_clic1_clicintctl(intr, addr)
 
     addr_num = 0x800C00
     addr = "0x{:X}".format(addr_num)
-    txt += generate_registers_sifive_clic0_cliccfg(addr)
+    txt += generate_registers_sifive_clic1_cliccfg(addr)
 
     txt += """\
               </registers>
 """
     return txt
 
-def generate_registers_sifive_clic0_clicintip(intr, addr):
-    """Generate xml string for sifive_clic0 intip register for specific interrupt id"""
+def generate_registers_sifive_clic1_clicintip(intr, addr):
+    """Generate xml string for sifive_clic1 intip register for specific interrupt id"""
     return """\
                 <register>
                   <name>clicintip_""" + intr + """</name>
@@ -82,8 +86,8 @@ def generate_registers_sifive_clic0_clicintip(intr, addr):
                 </register>
 """
 
-def generate_registers_sifive_clic0_clicintie(intr, addr):
-    """Generate xml string for sifive_clic0 intie register for specific interrupt id"""
+def generate_registers_sifive_clic1_clicintie(intr, addr):
+    """Generate xml string for sifive_clic1 intie register for specific interrupt id"""
     return """\
                 <register>
                   <name>clicintie_""" + intr + """</name>
@@ -93,8 +97,8 @@ def generate_registers_sifive_clic0_clicintie(intr, addr):
                 </register>
 """
 
-def generate_registers_sifive_clic0_clicintctl(intr, addr):
-    """Generate xml string for sifive_clic0 intctl register for specific interrupt id"""
+def generate_registers_sifive_clic1_clicintctl(intr, addr):
+    """Generate xml string for sifive_clic1 intctl register for specific interrupt id"""
     return """\
                 <register>
                   <name>clicintctl_""" + intr + """</name>
@@ -104,8 +108,8 @@ def generate_registers_sifive_clic0_clicintctl(intr, addr):
                 </register>
 """
 
-def generate_registers_sifive_clic0_cliccfg(addr):
-    """Generate xml string for sifive_clic0 cfg register"""
+def generate_registers_sifive_clic1_cliccfg(addr):
+    """Generate xml string for sifive_clic1 cfg register"""
     return """\
                 <register>
                   <name>cliccfg</name>
@@ -130,6 +134,25 @@ def generate_registers_sifive_clic0_cliccfg(addr):
                       <description>Determines the number of Mode bits available in clicintctl.</description>
                       <bitRange>[6:5]</bitRange>
                       <access>read-only</access>
+                    </field>
+                  </fields>
+                </register>
+"""
+
+def generate_registers_sifive_clic1_disableclicclockgatefeature(addr):
+    """Generate xml string for sifive_clic1 disableClicClockGateFeature register for specific interrupt id"""
+    return """\
+                <register>
+                  <name>disableClicClockGateFeature</name>
+                  <description>disableClicClockGateFeature Register for clock gating disable feature</description>
+                  <addressOffset>""" + addr + """</addressOffset>
+                  <size>8</size>
+                  <fields>
+                    <field>
+                      <name>disableClicClockGateFeature</name>
+                      <description>Used to enable/disable CLIC clock gating feature. Clear to enable</description>
+                      <bitRange>[0:0]</bitRange>
+                      <access>read-write</access>
                     </field>
                   </fields>
                 </register>

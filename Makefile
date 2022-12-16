@@ -16,6 +16,9 @@ test-lint: venv/bin/activate *.py
 	. $< && pylint *.py
 test: test-lint
 
+.PHONY: test-unit
+test-unit:
+
 .PHONY: test
 test:
 

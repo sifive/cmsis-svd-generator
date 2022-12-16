@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019 SiFive Inc.
+# Copyright (c) 2019-2022 SiFive Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -11,9 +11,12 @@ import os
 import sys
 import inspect
 import pydevicetree
+from xmlschema import XMLSchema
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0
 from scripts.sifive_clic0_control import generate_registers_sifive_clic0
+from scripts.sifive_clic1_control import generate_registers_sifive_clic1
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
+from scripts.sifive_plic1_control import generate_registers_sifive_plic1
 
 def parse_arguments(argv):
     """Parse the arguments into a dictionary with argparse"""
@@ -86,6 +89,7 @@ def generate_peripherals(dts):
     return txt
 
 #pylint: disable=too-many-arguments
+#pylint: disable-msg=bad-option-value,consider-using-f-string
 def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
     """Generate xml string for peripheral"""
     reg_dict = peripheral.get_reg()
@@ -107,24 +111,41 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
             </peripheral>
 """
 
+#pylint: disable=too-many-return-statements
 def generate_registers(dts, peripheral, regmap_path):
     """Generate xml string for registers from regmap file or generator code"""
     if regmap_path.endswith("riscv_clint0_control.py"):
         return generate_registers_riscv_clint0(dts)
     if regmap_path.endswith("sifive_clic0_control.py"):
         return generate_registers_sifive_clic0(dts, peripheral)
+    if regmap_path.endswith("sifive_clic1_control.py"):
+        return generate_registers_sifive_clic1(dts, peripheral)
     if regmap_path.endswith("riscv_plic0_control.py"):
         return generate_registers_riscv_plic0(dts, peripheral)
+    if regmap_path.endswith("sifive_plic1_control.py"):
+        return generate_registers_sifive_plic1(dts, peripheral)
 
-    regmap_file = open(regmap_path, "r")
-    txt = ""
-    for line in regmap_file:
-        txt += """              """ + line
+    if not regmap_path.endswith(".svd"):
+        print("*** Warning: missing action for peripheral '" + peripheral.name + "' ***")
+        return ""
+    with open(regmap_path, "r", encoding="utf-8") as regmap_file:
+        txt = ""
+        for line in regmap_file:
+            txt += """              """ + line
     return txt
 
 def get_name_as_id(name):
     """Get name as legal svd identifier"""
     return name.replace(",", "_").replace("-", "_")
+
+def validate_output(svd_file):
+    """Make sure the generated SVD file is valid"""
+    script_path = os.path.abspath(os.path.dirname(sys.argv[0]))
+    schema_path = os.path.join(script_path, "tests", "cmsis-svd.xsd")
+    if not os.path.exists(schema_path):
+        raise ValueError("Could not find the XSD schema file")
+    svd_schema = XMLSchema(schema_path)
+    svd_schema.validate(svd_file)
 
 def main(argv):
     """Parse arguments, extract data, and render clean cmsis svd xml to file"""
@@ -134,6 +155,7 @@ def main(argv):
     output = inspect.cleandoc(text)
     parsed_args.output.write(output)
     parsed_args.output.close()
+    validate_output(parsed_args.output.name)
 
 if __name__ == "__main__":
     main(sys.argv[1:])

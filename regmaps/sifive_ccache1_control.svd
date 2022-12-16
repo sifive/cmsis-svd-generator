@@ -164,6 +164,100 @@
     </fields>
   </register>
   <register>
+    <name>waymask4</name>
+    <description>Master 4 way mask</description>
+    <addressOffset>0x820</addressOffset>
+    <fields>
+      <field>
+        <name>waymask4</name>
+        <description>Enable way 0 for master 4</description>
+        <bitRange>[15:0]</bitRange>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>waymask5</name>
+    <description>Master 5 way mask</description>
+    <addressOffset>0x828</addressOffset>
+    <fields>
+      <field>
+        <name>waymask5</name>
+        <description>Enable way 0 for master 5</description>
+        <bitRange>[15:0]</bitRange>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>waymask6</name>
+    <description>Master 6 way mask</description>
+    <addressOffset>0x830</addressOffset>
+    <fields>
+      <field>
+        <name>waymask6</name>
+        <description>Enable way 0 for master 6</description>
+        <bitRange>[15:0]</bitRange>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>waymask7</name>
+    <description>Master 7 way mask</description>
+    <addressOffset>0x838</addressOffset>
+    <fields>
+      <field>
+        <name>waymask7</name>
+        <description>Enable way 0 for master 7</description>
+        <bitRange>[15:0]</bitRange>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>waymask8</name>
+    <description>Master 8 way mask</description>
+    <addressOffset>0x840</addressOffset>
+    <fields>
+      <field>
+        <name>waymask8</name>
+        <description>Enable way 0 for master 8</description>
+        <bitRange>[15:0]</bitRange>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>waymask9</name>
+    <description>Master 9 way mask</description>
+    <addressOffset>0x848</addressOffset>
+    <fields>
+      <field>
+        <name>waymask9</name>
+        <description>Enable way 0 for master 9</description>
+        <bitRange>[15:0]</bitRange>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>featuredisable</name>
+    <description>Composable cache</description>
+    <addressOffset>0x1000</addressOffset>
+    <fields>
+      <field>
+        <name>disabletrunkclockgate</name>
+        <description>Disable trunk clock gating</description>
+        <bitRange>[0:0]</bitRange>
+      </field>
+      <field>
+        <name>disableclockgate</name>
+        <description>Disable regional clock gating</description>
+        <bitRange>[1:1]</bitRange>
+      </field>
+      <field>
+        <name>disableclockgateslow</name>
+        <description>Disable aggressive regional clock gating that may degrade performance</description>
+        <bitRange>[2:2]</bitRange>
+      </field>
+    </fields>
+  </register>
+  <register>
     <name>pmeventselect0_0</name>
     <description>Performance monitor event select</description>
     <addressOffset>0x2000</addressOffset>
@@ -224,7 +318,7 @@
     <addressOffset>0x202C</addressOffset>
   </register>
   <register>
-    <name>pmclientfilter</name>
+    <name>pmclientfilter0</name>
     <description>Performance counter client disable mask 0.</description>
     <addressOffset>0x2800</addressOffset>
     <fields>
@@ -247,6 +341,36 @@
         <name>pmclientfilter3</name>
         <description>Performance counter disable mask for client 3</description>
         <bitRange>[3:3]</bitRange>
+      </field>
+      <field>
+        <name>pmclientfilter4</name>
+        <description>Performance counter disable mask for client 4</description>
+        <bitRange>[4:4]</bitRange>
+      </field>
+      <field>
+        <name>pmclientfilter5</name>
+        <description>Performance counter disable mask for client 5</description>
+        <bitRange>[5:5]</bitRange>
+      </field>
+      <field>
+        <name>pmclientfilter6</name>
+        <description>Performance counter disable mask for client 6</description>
+        <bitRange>[6:6]</bitRange>
+      </field>
+      <field>
+        <name>pmclientfilter7</name>
+        <description>Performance counter disable mask for client 7</description>
+        <bitRange>[7:7]</bitRange>
+      </field>
+      <field>
+        <name>pmclientfilter8</name>
+        <description>Performance counter disable mask for client 8</description>
+        <bitRange>[8:8]</bitRange>
+      </field>
+      <field>
+        <name>pmclientfilter9</name>
+        <description>Performance counter disable mask for client 9</description>
+        <bitRange>[9:9]</bitRange>
       </field>
     </fields>
   </register>
