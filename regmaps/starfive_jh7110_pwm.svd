@@ -1,0 +1,102 @@
+<registers>
+  <register>
+    <name>cntr</name>
+    <description>PTC counter register</description>
+    <addressOffset>0x0</addressOffset>
+    <fields>
+      <field>
+        <name>cntr</name>
+        <description>PWM PTC counter</description>
+        <bitRange>[31:0]</bitRange>
+        <access>read-write</access>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>hrc</name>
+    <description>PTC duty-cycle register</description>
+    <addressOffset>0x4</addressOffset>
+    <fields>
+      <field>
+        <name>hrc</name>
+        <description>PWM PTC duty-cycle value</description>
+        <bitRange>[31:0]</bitRange>
+        <access>read-write</access>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>lrc</name>
+    <description>PTC period register</description>
+    <addressOffset>0x8</addressOffset>
+    <fields>
+      <field>
+        <name>lrc</name>
+        <description>PWM PTC period value</description>
+        <bitRange>[31:0]</bitRange>
+        <access>read-write</access>
+      </field>
+    </fields>
+  </register>
+  <register>
+    <name>ctrl</name>
+    <description>PTC control register</description>
+    <addressOffset>0xc</addressOffset>
+    <fields>
+      <field>
+        <name>en</name>
+        <description>PWM PTC enable</description>
+        <bitRange>[0:0]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>eclk</name>
+        <description>PWM PTC enable clock</description>
+        <bitRange>[1:1]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>nec</name>
+        <description>PWM PTC nec</description>
+        <bitRange>[2:2]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>oe</name>
+        <description>PWM PTC oe</description>
+        <bitRange>[3:3]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>single</name>
+        <description>PWM PTC single</description>
+        <bitRange>[4:4]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>inte</name>
+        <description>PWM PTC interrupt enable</description>
+        <bitRange>[5:5]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>int</name>
+        <description>PWM PTC interrupt</description>
+        <bitRange>[6:6]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>cntrrst</name>
+        <description>PWM PTC counter reset</description>
+        <bitRange>[7:7]</bitRange>
+        <access>read-write</access>
+      </field>
+      <field>
+        <name>capte</name>
+        <description>PWM PTC capte</description>
+        <bitRange>[8:8]</bitRange>
+        <access>read-write</access>
+      </field>
+    </fields>
+  </register>
+</registers>
