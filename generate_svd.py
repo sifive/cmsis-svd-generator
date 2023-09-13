@@ -63,10 +63,18 @@ def generate_peripherals(dts):
                 idx[compatible] = 0
 
     for peripheral in soc.child_nodes():
-        if peripheral.get_field("compatible") is not None and \
-            peripheral.get_field("reg-names") is not None:
+        if peripheral.get_field("compatible") is not None:
+            if peripheral.get_fields("reg") is not None and len(peripheral.get_fields("reg").values) % (peripheral.address_cells() + peripheral.size_cells()) != 0:
+                continue
+
             compatibles = peripheral.get_fields("compatible")
-            reg_names = peripheral.get_fields("reg-names")
+
+            reg_names = {}
+            if peripheral.get_field("reg-names") is not None:
+                reg_names = peripheral.get_fields("reg-names")
+            else:
+                reg_names = {"reg"}
+
             for comp in compatibles:
                 for reg in reg_names:
                     regmap_root = os.path.abspath(os.path.dirname(sys.argv[0]))
@@ -74,6 +82,14 @@ def generate_peripherals(dts):
                     regmap_path = os.path.join(regmap_root, "regmaps", regmap_name)
                     script_name = get_name_as_id(comp) + "_" + reg + ".py"
                     script_path = os.path.join(regmap_root, "scripts", script_name)
+
+                    if "clint0" in comp and not os.path.exists(script_path):
+                        script_path = os.path.join(regmap_root, "scripts", "riscv_clint0_control.py") 
+                    elif "plic0" in comp and not os.path.exists(script_path):
+                        script_path = os.path.join(regmap_root, "scripts", "riscv_plic0_control.py") 
+                    elif "clic0" in comp and not os.path.exists(script_path):
+                        script_path = os.path.join(regmap_root, "scripts", "sifive_clic0_control.py") 
+
                     if os.path.exists(regmap_path):
                         ext = str(idx[comp])
                         txt += generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path)
@@ -82,6 +98,10 @@ def generate_peripherals(dts):
                         ext = str(idx[comp])
                         txt += generate_peripheral(dts, peripheral, comp, ext, reg, script_path)
                         idx[comp] += 1
+                    else:
+                        ext = str(idx[comp])
+                        txt += generate_peripheral(dts, peripheral, comp, ext, reg, "")
+                        idx[comp] += 1
 
     return txt
 
@@ -89,7 +109,23 @@ def generate_peripherals(dts):
 def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
     """Generate xml string for peripheral"""
     reg_dict = peripheral.get_reg()
+
+    if reg_dict is None:
+        return ""
+
     reg_pair = reg_dict.get_by_name(reg)
+
+    addr_cells = peripheral.address_cells()
+    size_cells = peripheral.size_cells()
+    group_size = addr_cells + size_cells
+
+    if reg_pair is None and len(reg_dict.values) == group_size:
+        # no reg-names field was present, so parse according to the spec
+        reg_pair = [reg_dict.values[addr_cells - 1], reg_dict.values[group_size - 1]]
+    elif reg_pair is None:
+        # malformed DTS, give up
+        return ""
+
     reg_desc = comp + """,""" + reg
     print("Emitting registers for '" + peripheral.name + "' soc peripheral node")
 
@@ -108,6 +144,10 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
 """
 
 def generate_registers(dts, peripheral, regmap_path):
+    if regmap_path == "":
+        # FIXME: instead of just giving up here, attempt to parse register data from the DTS
+        return ""
+
     """Generate xml string for registers from regmap file or generator code"""
     if regmap_path.endswith("riscv_clint0_control.py"):
         return generate_registers_riscv_clint0(dts)
