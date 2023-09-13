@@ -7,6 +7,7 @@ This program generates CMSIS SVD xml given the devicetree for the core
 """
 
 import argparse
+import logging
 import os
 import sys
 import inspect
@@ -23,6 +24,10 @@ def parse_arguments(argv):
                             help="The path to the Devicetree for the target")
     arg_parser.add_argument("-o", "--output", required=True,
                             type=argparse.FileType('w'),
+                            help="The path of the CMSIS SVD file to output")
+    arg_parser.add_argument("-l", "--log", required=False,
+                            default="WARN",
+                            type=str,
                             help="The path of the CMSIS SVD file to output")
 
     return arg_parser.parse_args(argv)
@@ -64,7 +69,17 @@ def generate_peripherals(dts):
 
     for peripheral in soc.child_nodes():
         if peripheral.get_field("compatible") is not None:
-            if peripheral.get_fields("reg") is not None and len(peripheral.get_fields("reg").values) % (peripheral.address_cells() + peripheral.size_cells()) != 0:
+            reg = peripheral.get_fields("reg")
+
+            if reg is None:
+                reg_cells = 0
+            else:
+                reg_cells = len(peripheral.get_fields("reg").values)
+
+            exp_reg_cells = peripheral.address_cells() + peripheral.size_cells()
+
+            if peripheral.get_fields("reg") is not None and reg_cells % exp_reg_cells != 0:
+                logging.debug("Unexpected number of reg cells {}, expected {}".format(reg_cells, exp_reg_cells)) 
                 continue
 
             compatibles = peripheral.get_fields("compatible")
@@ -83,19 +98,28 @@ def generate_peripherals(dts):
                     script_name = get_name_as_id(comp) + "_" + reg + ".py"
                     script_path = os.path.join(regmap_root, "scripts", script_name)
 
+                    logging.debug("Compatible: {}".format(comp))
+                    logging.debug("    Regmap path: {}".format(regmap_path))
+                    logging.debug("    Script path: {}".format(script_path))
+
                     if "clint0" in comp and not os.path.exists(script_path):
+                        regmap_path = ""
                         script_path = os.path.join(regmap_root, "scripts", "riscv_clint0_control.py") 
                     elif "plic0" in comp and not os.path.exists(script_path):
+                        regmap_path = ""
                         script_path = os.path.join(regmap_root, "scripts", "riscv_plic0_control.py") 
                     elif "clic0" in comp and not os.path.exists(script_path):
+                        regmap_path = ""
                         script_path = os.path.join(regmap_root, "scripts", "sifive_clic0_control.py") 
 
                     if os.path.exists(regmap_path):
                         ext = str(idx[comp])
+                        logging.info("Regmap path: {}".format(regmap_path))
                         txt += generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path)
                         idx[comp] += 1
                     elif os.path.exists(script_path):
                         ext = str(idx[comp])
+                        logging.info("Script path: {}".format(script_path))
                         txt += generate_peripheral(dts, peripheral, comp, ext, reg, script_path)
                         idx[comp] += 1
                     else:
@@ -111,6 +135,7 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
     reg_dict = peripheral.get_reg()
 
     if reg_dict is None:
+        logging.debug("No peripheral found for {}".format(peripheral))
         return ""
 
     reg_pair = reg_dict.get_by_name(reg)
@@ -123,11 +148,12 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
         # no reg-names field was present, so parse according to the spec
         reg_pair = [reg_dict.values[addr_cells - 1], reg_dict.values[group_size - 1]]
     elif reg_pair is None:
+        logging.debug("Malformed DTS entry: {}".format(peripheral))
         # malformed DTS, give up
         return ""
 
     reg_desc = comp + """,""" + reg
-    print("Emitting registers for '" + peripheral.name + "' soc peripheral node")
+    logging.info("Emitting registers for '" + peripheral.name + "' soc peripheral node")
 
     return """\
             <peripheral>
@@ -145,6 +171,7 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
 
 def generate_registers(dts, peripheral, regmap_path):
     if regmap_path == "":
+        logging.debug("No regmap file found for {}".format(peripheral))
         # FIXME: instead of just giving up here, attempt to parse register data from the DTS
         return ""
 
@@ -155,6 +182,8 @@ def generate_registers(dts, peripheral, regmap_path):
         return generate_registers_sifive_clic0(dts, peripheral)
     if regmap_path.endswith("riscv_plic0_control.py"):
         return generate_registers_riscv_plic0(dts, peripheral)
+
+    logging.debug("Reading registers from regmap file: {}".format(regmap_path))
 
     regmap_file = open(regmap_path, "r")
     txt = ""
@@ -168,7 +197,16 @@ def get_name_as_id(name):
 
 def main(argv):
     """Parse arguments, extract data, and render clean cmsis svd xml to file"""
+
+
     parsed_args = parse_arguments(argv)
+
+    # set the logging level from the command line
+    numeric_level = getattr(logging, parsed_args.log.upper(), None)
+    if not isinstance(numeric_level, int):
+        raise ValueError('Invalid log level: %s' % parsed_args.log)
+    logging.basicConfig(level=numeric_level)
+
     dts = pydevicetree.Devicetree.parseFile(parsed_args.dts, followIncludes=True)
     text = generate_device(dts)
     output = inspect.cleandoc(text)
