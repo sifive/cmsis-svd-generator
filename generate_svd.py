@@ -15,6 +15,7 @@ import pydevicetree
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0
 from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
+from scripts.starfive_jh7110_syscrg import generate_registers_starfive_jh7110_syscrg
 
 def parse_arguments(argv):
     """Parse the arguments into a dictionary with argparse"""
@@ -88,14 +89,19 @@ def generate_peripherals(dts):
             if peripheral.get_field("reg-names") is not None:
                 reg_names = peripheral.get_fields("reg-names")
             else:
-                reg_names = {"reg"}
+                reg_names = {""}
 
             for comp in compatibles:
                 for reg in reg_names:
+                    if len(reg) == 0:
+                        rn = ""
+                    else:
+                        rn = "_" + reg
+
                     regmap_root = os.path.abspath(os.path.dirname(sys.argv[0]))
-                    regmap_name = get_name_as_id(comp) + "_" + reg + ".svd"
+                    regmap_name = get_name_as_id(comp) + rn + ".svd"
                     regmap_path = os.path.join(regmap_root, "regmaps", regmap_name)
-                    script_name = get_name_as_id(comp) + "_" + reg + ".py"
+                    script_name = get_name_as_id(comp) + rn + ".py"
                     script_path = os.path.join(regmap_root, "scripts", script_name)
 
                     logging.debug("Compatible: {}".format(comp))
@@ -182,6 +188,8 @@ def generate_registers(dts, peripheral, regmap_path):
         return generate_registers_sifive_clic0(dts, peripheral)
     if regmap_path.endswith("riscv_plic0_control.py"):
         return generate_registers_riscv_plic0(dts, peripheral)
+    if regmap_path.endswith("starfive_jh7110_syscrg.py"):
+        return generate_registers_starfive_jh7110_syscrg(dts, peripheral)
 
     logging.debug("Reading registers from regmap file: {}".format(regmap_path))
 
