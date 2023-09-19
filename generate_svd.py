@@ -15,6 +15,7 @@ import pydevicetree
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0
 from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
+from scripts.starfive_jh7110_stgcrg import generate_registers_starfive_jh7110_stgcrg
 from scripts.starfive_jh7110_syscrg import generate_registers_starfive_jh7110_syscrg
 
 def parse_arguments(argv):
@@ -190,6 +191,8 @@ def generate_registers(dts, peripheral, regmap_path):
         return generate_registers_riscv_plic0(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_syscrg.py"):
         return generate_registers_starfive_jh7110_syscrg(dts, peripheral)
+    if regmap_path.endswith("starfive_jh7110_stgcrg.py"):
+        return generate_registers_starfive_jh7110_stgcrg(dts, peripheral)
 
     logging.debug("Reading registers from regmap file: {}".format(regmap_path))
 
