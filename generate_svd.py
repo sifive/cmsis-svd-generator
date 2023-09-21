@@ -17,6 +17,7 @@ from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
 from scripts.starfive_jh7110_stgcrg import generate_registers_starfive_jh7110_stgcrg
 from scripts.starfive_jh7110_syscrg import generate_registers_starfive_jh7110_syscrg
+from scripts.starfive_jh7110_aoncrg import generate_registers_starfive_jh7110_aoncrg
 from scripts.starfive_jh7110_trng import generate_registers_starfive_jh7110_trng
 
 def parse_arguments(argv):
@@ -194,6 +195,8 @@ def generate_registers(dts, peripheral, regmap_path):
         return generate_registers_starfive_jh7110_syscrg(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_stgcrg.py"):
         return generate_registers_starfive_jh7110_stgcrg(dts, peripheral)
+    if regmap_path.endswith("starfive_jh7110_aoncrg.py"):
+        return generate_registers_starfive_jh7110_aoncrg(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_trng.py"):
         return generate_registers_starfive_jh7110_trng(dts, peripheral)
 

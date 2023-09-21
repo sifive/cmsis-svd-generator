@@ -144,6 +144,19 @@ def generate_registers_rst_stat(name, desc, addr):
                 </register>
 """
 
+def generate_registers_aon_rst_sel(name, desc, addr):
+    """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
+
+    return """\
+                <register>
+                  <name>""" + name + """</name>
+                  <description>""" + desc + """</description>
+                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
+                  <size>32</size>
+""" + generate_field_aon_rst_sel() + """\
+                </register>
+"""
+
 def generate_field_mux_sel(field_desc):
     return """\
                     <field>
@@ -277,6 +290,29 @@ def generate_field_rst_stat():
 """
 
     for i in range(0, 23):
+        bit_range = "[{}:{}]".format(i, i)
+        txt += """\
+                    <field>
+                      <name>""" + names[i] + """</name>
+                      <description>1: Assert reset, 0: De-assert reset</description>
+                      <bitRange>""" + bit_range + """</bitRange>
+                      <access>read-write</access>
+                    </field>
+"""
+
+    return txt + """\
+                  </fields>
+"""
+
+def generate_field_aon_rst_sel():
+    names = [
+            "gmac5_axi64_rstn_axi", "gmac5_axi64_rstn_ahb", "aon_iomux_presetn", "pmu_rstn_apb",
+            "pmu_rstn_wkup", "rtc_hms_rstn_apb", "rtc_hms_rstn_cal", "rtc_hms_rstn_osc32k",
+    ]
+    txt = """\
+                  <fields>
+"""
+    for i in range(0, 8):
         bit_range = "[{}:{}]".format(i, i)
         txt += """\
                     <field>
