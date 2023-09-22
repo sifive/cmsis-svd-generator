@@ -157,15 +157,25 @@ def generate_registers_aon_rst_sel(name, desc, addr):
                 </register>
 """
 
-def generate_field_mux_sel(field_desc):
+def generate_field(name, desc, bit_range, access):
+    if len(desc) == 0:
+        desc = name
+
     return """\
                     <field>
-                      <name>clk_mux_sel</name>
-                      <description>Clock multiplexing selector: """ + field_desc + """</description>
-                      <bitRange>[29:24]</bitRange>
-                      <access>read-write</access>
+                      <name>""" + name + """</name>
+                      <description>""" + desc + """</description>
+                      <bitRange>""" + bit_range + """</bitRange>
+                      <access>""" + access + """</access>
                     </field>
 """
+
+def generate_field_mux_sel(field_desc):
+    return generate_field(
+            "clk_mux_sel",
+            "Clock multiplexing selector: " + field_desc,
+            "[29:24]",
+            "read-write")
 
 def generate_field_divcfg(mdmt):
     field_desc = "Clock divider coefficient: Max=" + str(mdmt[0])
@@ -173,44 +183,18 @@ def generate_field_divcfg(mdmt):
     field_desc += ", Min=" + str(mdmt[2])
     field_desc += ", Typical=" + str(mdmt[3])
 
-    return """\
-                    <field>
-                      <name>clk_divcfg</name>
-                      <description>""" + field_desc + """</description>
-                      <bitRange>[23:0]</bitRange>
-                      <access>read-write</access>
-                    </field>
-"""
+    return generate_field("clk_divcfg", field_desc, "[23:0]", "read-write")
 
 def generate_field_icg():
-    return """\
-                    <field>
-                      <name>clk_icg</name>
-                      <description>1: Clock enable, 0: Clock disable</description>
-                      <bitRange>[31:31]</bitRange>
-                      <access>read-write</access>
-                    </field>
-"""
+    return generate_field("clk_icg", "1: Clock enable, 0: Clock disable", "[31:31]", "read-write")
 
 def generate_field_dly_chain_sel():
-    return """\
-                    <field>
-                      <name>dly_chain_sel</name>
-                      <description>Selector delay chain stage number, totally 32 stages, -50 ps each stage. The register value indicates the delay chain stage number. For example, diy_chain_sel=1 means to delay 1 stage.</description>
-                      <bitRange>[23:0]</bitRange>
-                      <access>read-write</access>
-                    </field>
-"""
+    desc = "Selector delay chain stage number, totally 32 stages, -50 ps each stage. The register value indicates the delay chain stage number. For example, diy_chain_sel=1 means to delay 1 stage."
+
+    return generate_field("dly_chain_sel", desc, "[23:0]", "read-write")
 
 def generate_field_clk_polarity():
-    return """\
-                    <field>
-                      <name>clk_polarity</name>
-                      <description>1: Clock inverter, 0: Clock buffer</description>
-                      <bitRange>[30:30]</bitRange>
-                      <access>read-write</access>
-                    </field>
-"""
+    return generate_field("clk_polarity", "1: Clock inverter, 0: Clock buffer", "[30:30]", "read-write") 
 
 def generate_field_rst_sel(idx):
     names = [
@@ -255,6 +239,9 @@ def generate_field_rst_sel(idx):
             "rstn_u0_temp_sensor_rstn_temp", "rstn_u0_jtag_certification_rst_n", "", "",
         ],
     ]
+
+    desc = "1: Assert reset, 0: De-assert reset"
+
     txt = """\
                   <fields>
 """
@@ -263,14 +250,7 @@ def generate_field_rst_sel(idx):
             continue
 
         bit_range = "[{}:{}]".format(i, i)
-        txt += """\
-                    <field>
-                      <name>""" + names[idx][i] + """</name>
-                      <description>1: Assert reset, 0: De-assert reset</description>
-                      <bitRange>""" + bit_range + """</bitRange>
-                      <access>read-write</access>
-                    </field>
-"""
+        txt += generate_field(names[idx][i], desc, bit_range, "read-write")
 
     return txt + """\
                   </fields>
@@ -285,20 +265,15 @@ def generate_field_rst_stat():
         "rstn_u0_plda_pcie_rstn_apb", "rstn_u1_plda_pcie_rstn_axi_mst0", "rstn_u1_plda_pcie_rstn_axi_slv0", "rstn_u1_plda_pcie_rstn_axi_slv",
         "rstn_u1_plda_pcie_rstn_brg", "rstn_u1_plda_pcie_rstn_pcie", "rstn_u1_plda_pcie_rstn_apb",
     ]
+
+    desc = "1: Assert reset, 0: De-assert reset"
     txt = """\
                   <fields>
 """
 
     for i in range(0, 23):
         bit_range = "[{}:{}]".format(i, i)
-        txt += """\
-                    <field>
-                      <name>""" + names[i] + """</name>
-                      <description>1: Assert reset, 0: De-assert reset</description>
-                      <bitRange>""" + bit_range + """</bitRange>
-                      <access>read-write</access>
-                    </field>
-"""
+        txt += generate_field(names[i], desc, bit_range, "read-write")
 
     return txt + """\
                   </fields>
@@ -309,19 +284,15 @@ def generate_field_aon_rst_sel():
             "gmac5_axi64_rstn_axi", "gmac5_axi64_rstn_ahb", "aon_iomux_presetn", "pmu_rstn_apb",
             "pmu_rstn_wkup", "rtc_hms_rstn_apb", "rtc_hms_rstn_cal", "rtc_hms_rstn_osc32k",
     ]
+
+    desc = "1: Assert reset, 0: De-assert reset"
     txt = """\
                   <fields>
 """
+
     for i in range(0, 8):
         bit_range = "[{}:{}]".format(i, i)
-        txt += """\
-                    <field>
-                      <name>""" + names[i] + """</name>
-                      <description>1: Assert reset, 0: De-assert reset</description>
-                      <bitRange>""" + bit_range + """</bitRange>
-                      <access>read-write</access>
-                    </field>
-"""
+        txt += generate_field(names[i], desc, bit_range, "read-write")
 
     return txt + """\
                   </fields>
