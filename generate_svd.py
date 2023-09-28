@@ -18,6 +18,7 @@ from scripts.riscv_plic0_control import generate_registers_riscv_plic0
 from scripts.starfive_jh7110_stgcrg import generate_registers_starfive_jh7110_stgcrg
 from scripts.starfive_jh7110_syscrg import generate_registers_starfive_jh7110_syscrg
 from scripts.starfive_jh7110_aoncrg import generate_registers_starfive_jh7110_aoncrg
+from scripts.starfive_jh7110_aon_pinctrl import generate_registers_starfive_jh7110_aon_iomux_cfg
 from scripts.starfive_jh7110_aon_syscon import generate_registers_starfive_jh7110_aon_syscon
 from scripts.starfive_jh7110_stg_syscon import generate_registers_starfive_jh7110_stg_syscon
 from scripts.starfive_jh7110_sys_pinctrl import generate_registers_starfive_jh7110_sys_iomux_cfg
@@ -201,6 +202,8 @@ def generate_registers(dts, peripheral, regmap_path):
         return generate_registers_starfive_jh7110_stgcrg(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_aoncrg.py"):
         return generate_registers_starfive_jh7110_aoncrg(dts, peripheral)
+    if regmap_path.endswith("starfive_jh7110_aon_pinctrl.py"):
+        return generate_registers_starfive_jh7110_aon_iomux_cfg(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_aon_syscon.py"):
         return generate_registers_starfive_jh7110_aon_syscon(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_stg_syscon.py"):
