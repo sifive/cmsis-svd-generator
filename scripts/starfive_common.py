@@ -157,6 +157,24 @@ def generate_registers_aon_rst_sel(name, desc, addr):
                 </register>
 """
 
+def generate_register(name, desc, addr, field_name_desc_range_access):
+    txt = """\
+                <register>
+                  <name>""" + name + """</name>
+                  <description>""" + desc + """</description>
+                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
+                  <size>32</size>
+                  <fields>
+"""
+
+    for (n, d, r, a) in field_name_desc_range_access:
+        txt += generate_field(n, d, r, a)
+
+    return txt + """\
+                  </fields>
+                </register>
+"""
+
 def generate_field(name, desc, bit_range, access):
     if len(desc) == 0:
         desc = name
