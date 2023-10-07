@@ -12,6 +12,7 @@ import os
 import sys
 import inspect
 import pydevicetree
+from scripts.snps_designware_i2c import generate_registers_snps_designware_i2c
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0
 from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
@@ -191,6 +192,8 @@ def generate_registers(dts, peripheral, regmap_path):
         return ""
 
     """Generate xml string for registers from regmap file or generator code"""
+    if regmap_path.endswith("snps_designware_i2c.py"):
+        return generate_registers_snps_designware_i2c(dts, peripheral)
     if regmap_path.endswith("riscv_clint0_control.py"):
         return generate_registers_riscv_clint0(dts)
     if regmap_path.endswith("sifive_clic0_control.py"):
