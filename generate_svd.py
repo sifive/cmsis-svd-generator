@@ -12,10 +12,11 @@ import os
 import sys
 import inspect
 import pydevicetree
-from scripts.snps_designware_i2c import generate_registers_snps_designware_i2c
+from scripts.arm_pl022 import generate_registers_arm_pl022
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0
 from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
+from scripts.snps_designware_i2c import generate_registers_snps_designware_i2c
 from scripts.starfive_jh7110_pmu import generate_registers_starfive_jh7110_pmu
 from scripts.starfive_jh7110_stgcrg import generate_registers_starfive_jh7110_stgcrg
 from scripts.starfive_jh7110_syscrg import generate_registers_starfive_jh7110_syscrg
@@ -192,14 +193,16 @@ def generate_registers(dts, peripheral, regmap_path):
         return ""
 
     """Generate xml string for registers from regmap file or generator code"""
-    if regmap_path.endswith("snps_designware_i2c.py"):
-        return generate_registers_snps_designware_i2c(dts, peripheral)
+    if regmap_path.endswith("arm_pl022.py"):
+        return generate_registers_arm_pl022(dts, peripheral)
     if regmap_path.endswith("riscv_clint0_control.py"):
         return generate_registers_riscv_clint0(dts)
     if regmap_path.endswith("sifive_clic0_control.py"):
         return generate_registers_sifive_clic0(dts, peripheral)
     if regmap_path.endswith("riscv_plic0_control.py"):
         return generate_registers_riscv_plic0(dts, peripheral)
+    if regmap_path.endswith("snps_designware_i2c.py"):
+        return generate_registers_snps_designware_i2c(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_pmu.py"):
         return generate_registers_starfive_jh7110_pmu(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_syscrg.py"):
