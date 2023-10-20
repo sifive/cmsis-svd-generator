@@ -157,13 +157,14 @@ def generate_registers_aon_rst_sel(name, desc, addr):
                 </register>
 """
 
-def generate_register(name, desc, addr, field_name_desc_range_access, size=32):
+def generate_register(name, desc, addr, field_name_desc_range_access, size=32, reset_value=0):
     txt = """\
                 <register>
                   <name>""" + name + """</name>
                   <description>""" + desc + """</description>
                   <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
                   <size>""" + str(size) + """</size>
+                  <resetValue>""" + str(reset_value) + """</resetValue>
                   <fields>
 """
 
