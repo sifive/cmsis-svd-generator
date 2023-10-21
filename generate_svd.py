@@ -119,13 +119,13 @@ def generate_peripherals(dts):
                     logging.debug("    Regmap path: {}".format(regmap_path))
                     logging.debug("    Script path: {}".format(script_path))
 
-                    if "clint0" in comp and not os.path.exists(script_path):
+                    if "clint" in comp and not os.path.exists(script_path):
                         regmap_path = ""
                         script_path = os.path.join(regmap_root, "scripts", "riscv_clint0_control.py") 
-                    elif "plic0" in comp and not os.path.exists(script_path):
+                    elif "plic" in comp and not os.path.exists(script_path):
                         regmap_path = ""
                         script_path = os.path.join(regmap_root, "scripts", "riscv_plic0_control.py") 
-                    elif "clic0" in comp and not os.path.exists(script_path):
+                    elif "clic" in comp and not os.path.exists(script_path):
                         regmap_path = ""
                         script_path = os.path.join(regmap_root, "scripts", "sifive_clic0_control.py") 
 
@@ -172,9 +172,44 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
     reg_desc = comp + """,""" + reg
     logging.info("Emitting registers for '" + peripheral.name + "' soc peripheral node")
 
+    if regmap_path.endswith("arm_pl022.py"):
+        name = "spi{}".format(ext)
+    elif regmap_path.endswith("riscv_clint0_control.py"):
+        name = "clint"
+    elif regmap_path.endswith("riscv_plic0_control.py"):
+        name = "plic"
+    elif regmap_path.endswith("sifive_clic0_control.py"):
+        name = "clic"
+    elif regmap_path.endswith("snps_designware_i2c.py"):
+        name = "i2c{}".format(ext)
+    elif regmap_path.endswith("starfive_jh7110_pmu.py"):
+        name = "pmu"
+    elif regmap_path.endswith("starfive_jh7110_syscrg.py"):
+        name = "syscrg"
+    elif regmap_path.endswith("starfive_jh7110_stgcrg.py"):
+        name = "stgcrg"
+    elif regmap_path.endswith("starfive_jh7110_aoncrg.py"):
+        name = "aoncrg"
+    elif regmap_path.endswith("starfive_jh7110_aon_pinctrl.py"):
+        name = "aon_pinctrl"
+    elif regmap_path.endswith("starfive_jh7110_aon_syscon.py"):
+        name = "aon_syscon"
+    elif regmap_path.endswith("starfive_jh7110_stg_syscon.py"):
+        name = "stg_syscon"
+    elif regmap_path.endswith("starfive_jh7110_sys_pinctrl.py"):
+        name = "sys_pinctrl"
+    elif regmap_path.endswith("starfive_jh7110_sys_syscon.py"):
+        name = "sys_syscon"
+    elif regmap_path.endswith("starfive_jh7110_pwm.py") or regmap_path.endswith("starfive_jh7110_pwm.svd"):
+        name = "pwm"
+    elif regmap_path.endswith("starfive_jh7110_trng.py"):
+        name = "trng"
+    else:
+        name = "{}_{}".format(get_name_as_id(comp), ext)
+
     return """\
             <peripheral>
-              <name>""" + get_name_as_id(comp) + """_""" + ext + """</name>
+              <name>""" + name + """</name>
               <description>From """ + reg_desc + """ peripheral generator</description>
               <baseAddress>""" + "0x{:X}".format(reg_pair[0]) + """</baseAddress>
               <addressBlock>
@@ -189,6 +224,7 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
 def generate_registers(dts, peripheral, regmap_path):
     if regmap_path == "":
         logging.debug("No regmap file found for {}".format(peripheral))
+        logging.debug("\tRegmap path: {}".format(regmap_path))
         # FIXME: instead of just giving up here, attempt to parse register data from the DTS
         return ""
 
