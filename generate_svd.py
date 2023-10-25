@@ -13,6 +13,7 @@ import sys
 import inspect
 import pydevicetree
 from scripts.arm_pl022 import generate_registers_arm_pl022
+from scripts.cdns_qspi_nor import generate_registers_cdns_qspi
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0
 from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
@@ -174,6 +175,8 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
 
     if regmap_path.endswith("arm_pl022.py"):
         name = "spi{}".format(ext)
+    elif regmap_path.endswith("cdns_qspi_nor.py"):
+        name = "qspi".format(ext)
     elif regmap_path.endswith("riscv_clint0_control.py"):
         name = "clint"
     elif regmap_path.endswith("riscv_plic0_control.py"):
@@ -231,6 +234,8 @@ def generate_registers(dts, peripheral, regmap_path):
     """Generate xml string for registers from regmap file or generator code"""
     if regmap_path.endswith("arm_pl022.py"):
         return generate_registers_arm_pl022(dts, peripheral)
+    if regmap_path.endswith("cdns_qspi_nor.py"):
+        return generate_registers_cdns_qspi(dts, peripheral)
     if regmap_path.endswith("riscv_clint0_control.py"):
         return generate_registers_riscv_clint0(dts)
     if regmap_path.endswith("sifive_clic0_control.py"):
