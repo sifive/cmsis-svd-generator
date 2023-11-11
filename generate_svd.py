@@ -18,6 +18,7 @@ from scripts.riscv_clint0_control import generate_registers_riscv_clint0
 from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
 from scripts.snps_designware_i2c import generate_registers_snps_designware_i2c
+from scripts.snps_dw_apb_uart import generate_registers_snps_dw_apb_uart
 from scripts.starfive_jh7110_pmu import generate_registers_starfive_jh7110_pmu
 from scripts.starfive_jh7110_stgcrg import generate_registers_starfive_jh7110_stgcrg
 from scripts.starfive_jh7110_syscrg import generate_registers_starfive_jh7110_syscrg
@@ -183,6 +184,8 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
         name = "plic"
     elif regmap_path.endswith("sifive_clic0_control.py"):
         name = "clic"
+    elif regmap_path.endswith("snps_dw_apb_uart.py"):
+        name = "uart{}".format(ext)
     elif regmap_path.endswith("snps_designware_i2c.py"):
         name = "i2c{}".format(ext)
     elif regmap_path.endswith("starfive_jh7110_pmu.py"):
@@ -244,6 +247,8 @@ def generate_registers(dts, peripheral, regmap_path):
         return generate_registers_riscv_plic0(dts, peripheral)
     if regmap_path.endswith("snps_designware_i2c.py"):
         return generate_registers_snps_designware_i2c(dts, peripheral)
+    if regmap_path.endswith("snps_dw_apb_uart.py"):
+        return generate_registers_snps_dw_apb_uart(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_pmu.py"):
         return generate_registers_starfive_jh7110_pmu(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_syscrg.py"):
