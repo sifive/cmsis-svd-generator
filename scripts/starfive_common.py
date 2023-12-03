@@ -319,16 +319,24 @@ def generate_field_aon_rst_sel():
 
 def generate_fields_sram_config(name, base):
     txt = generate_field("{}_slp".format(name), "SRAM/ROM configuration. SLP: sleep enable, high active, default is low.", "[{}:{}]".format(base, base), "read-write")
-
-    txt += generate_field("{}_sram_config_sd".format(name), "SRAM/ROM configuration. SD: shutdown enable, high active, default is low.", "[{}:{}]".format(base + 1, base + 1), "read-write")
-
+    txt += generate_field("{}_sd".format(name), "SRAM/ROM configuration. SD: shutdown enable, high active, default is low.", "[{}:{}]".format(base + 1, base + 1), "read-write")
     txt += generate_field("{}_rtsel".format(name), "SRAM/ROM configuration. RTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 3, base + 2), "read-write")
     txt += generate_field("{}_ptsel".format(name), "SRAM/ROM configuration. PTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 5, base + 4), "read-write")
     txt += generate_field("{}_trb".format(name), "SRAM/ROM configuration. TRB: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 7, base + 6), "read-write")
-
     txt += generate_field("{}_wtsel".format(name), "SRAM/ROM configuration. WTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 9, base + 8), "read-write")
     txt += generate_field("{}_vs".format(name), "SRAM/ROM configuration. VS: timing setting for debug purpose, default is 1'b1.", "[{}:{}]".format(base + 10, base + 10), "read-write")
-
     txt += generate_field("{}_vg".format(name), "SRAM/ROM configuration. VG: timing setting for debug purpose, default is 1'b1.", "[{}:{}]".format(base + 11, base + 11), "read-write")
 
     return txt
+
+def generate_fields_list_sram_config(name, base):
+    return [
+        ("{}_slp".format(name), "SRAM/ROM configuration. SLP: sleep enable, high active, default is low.", "[{}:{}]".format(base, base), "read-write"),
+        ("{}_sd".format(name), "SRAM/ROM configuration. SD: shutdown enable, high active, default is low.", "[{}:{}]".format(base + 1, base + 1), "read-write"),
+        ("{}_rtsel".format(name), "SRAM/ROM configuration. RTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 3, base + 2), "read-write"),
+        ("{}_ptsel".format(name), "SRAM/ROM configuration. PTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 5, base + 4), "read-write"),
+        ("{}_trb".format(name), "SRAM/ROM configuration. TRB: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 7, base + 6), "read-write"),
+        ("{}_wtsel".format(name), "SRAM/ROM configuration. WTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 9, base + 8), "read-write"),
+        ("{}_vs".format(name), "SRAM/ROM configuration. VS: timing setting for debug purpose, default is 1'b1.", "[{}:{}]".format(base + 10, base + 10), "read-write"),
+        ("{}_vg".format(name), "SRAM/ROM configuration. VG: timing setting for debug purpose, default is 1'b1.", "[{}:{}]".format(base + 11, base + 11), "read-write")
+    ]
