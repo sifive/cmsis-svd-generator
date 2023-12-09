@@ -1,161 +1,55 @@
 def generate_registers_mux_sel(name, desc, addr, field_desc):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-                  <fields>
-""" + generate_field_mux_sel(field_desc) + """\
-                  </fields>
-                </register>
-"""
+    return generate_register(name, desc, addr, [generate_field_mux_sel(field_desc)])
 
 def generate_registers_divcfg(name, desc, addr, mdmt):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-                  <fields>
-""" + generate_field_divcfg(mdmt) + """\
-                  </fields>
-                </register>
-"""
+    return generate_register(name, desc, addr, [generate_field_divcfg(mdmt)])
 
 def generate_registers_mux_sel_divcfg(name, desc, addr, field_desc, mdmt):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-                  <fields>
-""" + generate_field_mux_sel(field_desc) + """\
-""" + generate_field_divcfg(mdmt) + """\
-                  </fields>
-                </register>
-"""
+    return generate_register(name, desc, addr, [
+        generate_field_mux_sel(field_desc),
+        generate_field_divcfg(mdmt)
+    ])
 
 def generate_registers_icg(name, desc, addr):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-                  <fields>
-""" + generate_field_icg() + """\
-                  </fields>
-                </register>
-"""
+    return generate_register(name, desc, addr, [generate_field_icg()])
 
 def generate_registers_icg_divcfg(name, desc, addr, mdmt):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-                  <fields>
-""" + generate_field_icg() + """\
-""" + generate_field_divcfg(mdmt) + """\
-                  </fields>
-                </register>
-"""
+    return generate_register(name, desc, addr, [
+        generate_field_icg(),
+        generate_field_divcfg(mdmt)
+    ])
 
 def generate_registers_icg_mux_sel(name, desc, addr, field_desc):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-                  <fields>
-""" + generate_field_icg() + """\
-""" + generate_field_mux_sel(field_desc) + """\
-                  </fields>
-                </register>
-"""
+    return generate_register(name, desc, addr, [
+        generate_field_icg(),
+        generate_field_mux_sel(field_desc)
+    ])
 
 def generate_registers_dly_chain_sel(name, desc, addr):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-                  <fields>
-""" + generate_field_dly_chain_sel() + """\
-                  </fields>
-                </register>
-"""
+    return generate_register(name, desc, addr, [generate_field_dly_chain_sel()])
 
 def generate_registers_clk_polarity(name, desc, addr):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-                  <fields>
-""" + generate_field_clk_polarity() + """\
-                  </fields>
-                </register>
-"""
+    return generate_register(name, desc, addr, [generate_field_clk_polarity()])
 
 def generate_registers_rst_sel(name, desc, idx, addr):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-""" + generate_field_rst_sel(idx) + """\
-                </register>
-"""
+    return generate_register(name, desc, addr, generate_field_rst_sel(idx))
 
 def generate_registers_rst_stat(name, desc, addr):
     """Generate xml string for starfive_jh7110_stgcrg """ + name + """ register"""
-
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-""" + generate_field_rst_stat() + """\
-                </register>
-"""
+    return generate_register(name, desc, addr, generate_field_rst_stat())
 
 def generate_registers_aon_rst_sel(name, desc, addr):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
-
-    return """\
-                <register>
-                  <name>""" + name + """</name>
-                  <description>""" + desc + """</description>
-                  <addressOffset>""" + "0x{:x}".format(addr) + """</addressOffset>
-                  <size>32</size>
-""" + generate_field_aon_rst_sel() + """\
-                </register>
-"""
+    return generate_register(name, desc, addr, generate_field_aon_rst_sel())
 
 def generate_register(name, desc, addr, field_name_desc_range_access, size=32, reset_value=0):
     txt = """\
@@ -190,30 +84,28 @@ def generate_field(name, desc, bit_range, access):
 """
 
 def generate_field_mux_sel(field_desc):
-    return generate_field(
-            "clk_mux_sel",
-            "Clock multiplexing selector: " + field_desc,
-            "[29:24]",
-            "read-write")
+    return (
+        "clk_mux_sel",
+        "Clock multiplexing selector: " + field_desc,
+        "[29:24]",
+        "read-write",
+    )
 
 def generate_field_divcfg(mdmt):
-    field_desc = "Clock divider coefficient: Max=" + str(mdmt[0])
-    field_desc += ", Default=" + str(mdmt[1])
-    field_desc += ", Min=" + str(mdmt[2])
-    field_desc += ", Typical=" + str(mdmt[3])
+    field_desc = "Clock divider coefficient: Max={}, Default={}, Min={}, Typical={}".format(mdmt[0], mdmt[1], mdmt[2], mdmt[3])
 
-    return generate_field("clk_divcfg", field_desc, "[23:0]", "read-write")
+    return ("clk_divcfg", field_desc, "[23:0]", "read-write")
 
 def generate_field_icg():
-    return generate_field("clk_icg", "1: Clock enable, 0: Clock disable", "[31:31]", "read-write")
+    return ("clk_icg", "1: Clock enable, 0: Clock disable", "[31:31]", "read-write")
 
 def generate_field_dly_chain_sel():
     desc = "Selector delay chain stage number, totally 32 stages, -50 ps each stage. The register value indicates the delay chain stage number. For example, diy_chain_sel=1 means to delay 1 stage."
 
-    return generate_field("dly_chain_sel", desc, "[23:0]", "read-write")
+    return ("dly_chain_sel", desc, "[23:0]", "read-write")
 
 def generate_field_clk_polarity():
-    return generate_field("clk_polarity", "1: Clock inverter, 0: Clock buffer", "[30:30]", "read-write") 
+    return ("clk_polarity", "1: Clock inverter, 0: Clock buffer", "[30:30]", "read-write") 
 
 def generate_field_rst_sel(idx):
     names = [
@@ -261,19 +153,7 @@ def generate_field_rst_sel(idx):
 
     desc = "1: Assert reset, 0: De-assert reset"
 
-    txt = """\
-                  <fields>
-"""
-    for i in range(0, 32):
-        if len(names[idx][i]) == 0:
-            continue
-
-        bit_range = "[{}:{}]".format(i, i)
-        txt += generate_field(names[idx][i], desc, bit_range, "read-write")
-
-    return txt + """\
-                  </fields>
-"""
+    return [(names[idx][i], desc, "[{}:{}]".format(i, i), "read-write") for i in range(32) if len(names[idx][i]) != 0]
 
 def generate_field_rst_stat():
     names = [
@@ -286,17 +166,8 @@ def generate_field_rst_stat():
     ]
 
     desc = "1: Assert reset, 0: De-assert reset"
-    txt = """\
-                  <fields>
-"""
 
-    for i in range(0, 23):
-        bit_range = "[{}:{}]".format(i, i)
-        txt += generate_field(names[i], desc, bit_range, "read-write")
-
-    return txt + """\
-                  </fields>
-"""
+    return [(names[i], desc, "[{}:{}]".format(i, i), "read-write") for i in range(23)]
 
 def generate_field_aon_rst_sel():
     names = [
@@ -305,29 +176,8 @@ def generate_field_aon_rst_sel():
     ]
 
     desc = "1: Assert reset, 0: De-assert reset"
-    txt = """\
-                  <fields>
-"""
 
-    for i in range(0, 8):
-        bit_range = "[{}:{}]".format(i, i)
-        txt += generate_field(names[i], desc, bit_range, "read-write")
-
-    return txt + """\
-                  </fields>
-"""
-
-def generate_fields_sram_config(name, base):
-    txt = generate_field("{}_slp".format(name), "SRAM/ROM configuration. SLP: sleep enable, high active, default is low.", "[{}:{}]".format(base, base), "read-write")
-    txt += generate_field("{}_sd".format(name), "SRAM/ROM configuration. SD: shutdown enable, high active, default is low.", "[{}:{}]".format(base + 1, base + 1), "read-write")
-    txt += generate_field("{}_rtsel".format(name), "SRAM/ROM configuration. RTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 3, base + 2), "read-write")
-    txt += generate_field("{}_ptsel".format(name), "SRAM/ROM configuration. PTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 5, base + 4), "read-write")
-    txt += generate_field("{}_trb".format(name), "SRAM/ROM configuration. TRB: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 7, base + 6), "read-write")
-    txt += generate_field("{}_wtsel".format(name), "SRAM/ROM configuration. WTSEL: timing setting for debug purpose, default is 2'b01.", "[{}:{}]".format(base + 9, base + 8), "read-write")
-    txt += generate_field("{}_vs".format(name), "SRAM/ROM configuration. VS: timing setting for debug purpose, default is 1'b1.", "[{}:{}]".format(base + 10, base + 10), "read-write")
-    txt += generate_field("{}_vg".format(name), "SRAM/ROM configuration. VG: timing setting for debug purpose, default is 1'b1.", "[{}:{}]".format(base + 11, base + 11), "read-write")
-
-    return txt
+    return [(names[i], desc, "[{}:{}]".format(i, i), "read-write") for i in range(8)]
 
 def generate_fields_list_sram_config(name, base):
     return [
