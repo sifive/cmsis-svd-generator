@@ -1,3 +1,5 @@
+import logging
+
 def generate_registers_mux_sel(name, desc, addr, field_desc):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
     return generate_register(name, desc, addr, [generate_field_mux_sel(field_desc)])
@@ -50,6 +52,164 @@ def generate_registers_rst_stat(name, desc, addr):
 def generate_registers_aon_rst_sel(name, desc, addr):
     """Generate xml string for starfive_jh7110_syscrg """ + name + """ register"""
     return generate_register(name, desc, addr, generate_field_aon_rst_sel())
+
+def generate_interrupt(device, name, desc = ""):
+    irq_map = {
+        "jh7110": {
+            "gmac_lpi0": 0,
+            "gmac_pmt0": 1,
+            "gmac_sbd0": 2,
+            "gmac_sbd_tx0": 3,
+            "gmac_sbd_rx0": 4,
+            "rtc_hms_ms_pulse": 5,
+            "rtc_hms_one_sec_pulse": 6,
+            "rtc": 7,
+            "wave511": 8,
+            "codaj12": 9,
+            "wave420l": 10,
+            "noc_bus0": 11,
+            "noc_bus1": 12,
+            "noc_bus2": 13,
+            "ddr_asp": 14,
+            "ddr_cooldown": 15,
+            "ddr_hightemp": 16,
+            "ddr_overtemp": 17,
+            "ddr_phy": 18,
+            "ddr_phy_freq": 19,
+            "qspi": 20,
+            "mailbox0": 21,
+            "mailbox1": 22,
+            "sec_algc": 23,
+            "sec_dmac": 24,
+            "sec_trng": 25,
+            "otpc": 26,
+            "uart0": 27,
+            "uart1": 28,
+            "uart2": 29,
+            "i2c0": 30,
+            "i2c1": 31,
+            "i2c2": 32,
+            "spi0": 33,
+            "spi1": 34,
+            "spi2": 35,
+            "reserved0": 36,
+            "i2srx0": 37,
+            "i2srx1": 38,
+            "i2srx2": 39,
+            "uart3": 40,
+            "uart4": 41,
+            "uart5": 42,
+            "i2c3": 43,
+            "i2c4": 44,
+            "i2c5": 45,
+            "i2c6": 46,
+            "spi3": 47,
+            "spi4": 48,
+            "spi5": 49,
+            "spi6": 50,
+            "pcie0": 51,
+            "pcie1": 52,
+            "i2stx0": 53,
+            "i2stx1": 54,
+            "pwm0": 55,
+            "pwm1": 56,
+            "pwm2": 57,
+            "pwm3": 58,
+            "pwm4": 59,
+            "pwm5": 60,
+            "pwm6": 61,
+            "pwm7": 62,
+            "wdt": 63,
+            "timer0": 64,
+            "timer1": 65,
+            "timer2": 66,
+            "timer3": 67,
+            "dma": 68,
+            "sdio0": 69,
+            "sdio1": 70,
+            "sdio1": 70,
+            "gmac_lpi1": 71,
+            "gmac_pmt1": 72,
+            "gmac_sbd1": 73,
+            "gmac_sbd_tx1": 74,
+            "gmac_sbd_rx1": 75,
+            "temp_sensor": 76,
+            "gpu_os": 77,
+            "gpu_pow": 78,
+            "spdif": 79,
+            "aon_iomux": 80,
+            "sys_iomux": 81,
+            "isp0": 82,
+            "isp1": 83,
+            "isp2": 84,
+            "isp3": 85,
+            "isp_vin_axird": 86,
+            "isp_vin_axiwr": 87,
+            "isp_vin": 88,
+            "isp_vin_err": 89,
+            "vout0": 90,
+            "vout1": 91,
+            "vout2": 92,
+            "vout3": 93,
+            "vout4": 94,
+            "usb0": 95,
+            "usb1": 96,
+            "usb2": 97,
+            "usb3": 98,
+            "usb4": 99,
+            "usb5": 100,
+            "usb6": 101,
+            "usb7": 102,
+            "usb_irqs0": 103,
+            "usb_irqs1": 104,
+            "usb_otg": 105,
+            "pmu": 106,
+            "can0": 107,
+            "can1": 108,
+            "int": 109,
+            "reserved1": 110,
+            "reserved2": 111,
+            "reserved3": 112,
+            "reserved4": 113,
+            "reserved5": 114,
+            "reserved6": 115,
+            "reserved7": 116,
+            "reserved8": 117,
+            "reserved9": 118,
+            "reserved10": 119,
+            "reserved11": 120,
+            "reserved12": 121,
+            "reserved13": 122,
+            "reserved14": 123,
+            "reserved15": 124,
+            "reserved16": 125,
+            "reserved17": 126,
+        }
+    }
+
+
+    try:
+        value = str(irq_map[device][name])
+    except:
+        logging.debug("no IRQ map entry for device: {}, name: {}".format(device, name))
+        return ""
+
+    txt = """\
+              <interrupt>
+                <name>""" + name + """</name>
+"""
+
+    if len(desc) != 0:
+        txt += """\
+                <description>""" + desc + """</description>
+"""
+
+    txt += """\
+                <value>""" + value + """</value>
+              </interrupt>
+"""
+
+    return txt
 
 def generate_register(name, desc, addr, field_name_desc_range_access, size=32, reset_value=0):
     txt = """\

@@ -19,6 +19,7 @@ from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
 from scripts.snps_designware_i2c import generate_registers_snps_designware_i2c
 from scripts.snps_dw_apb_uart import generate_registers_snps_dw_apb_uart
+from scripts.starfive_common import generate_interrupt
 from scripts.starfive_jh7110_pmu import generate_registers_starfive_jh7110_pmu
 from scripts.starfive_jh7110_stgcrg import generate_registers_starfive_jh7110_stgcrg
 from scripts.starfive_jh7110_syscrg import generate_registers_starfive_jh7110_syscrg
@@ -223,6 +224,7 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
                 <size>""" + "0x{:X}".format(reg_pair[1]) + """</size>
                 <usage>registers</usage>
               </addressBlock>
+""" + generate_interrupt("jh7110", name) + """\
 """ + generate_registers(dts, peripheral, regmap_path) + """\
             </peripheral>
 """
