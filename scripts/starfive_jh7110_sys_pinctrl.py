@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyleft (c) 2023 cmsis-svd-generator developers 
+# Copyleft (c) 2023 cmsis-svd-generator developers
 # SPDX-License-Identifier: Apache-2.0
 
 from scripts.starfive_common import *
@@ -43,12 +43,12 @@ def generate_register_fmux_gpo_doen(idx):
         0x0e010d0d, 0x1d011c1c, 0x25012424, 0x29012828,
     ]
 
-    name = "gpo_doen{}".format(idx)
+    name = "gpo_doen_{}".format(idx)
     desc = "SYS IOMUX CFG SAIF SYSCFG FMUX {} DOEN".format(idx)
 
     ndra = [
         (
-            "gpo{}_doen".format((idx * 4) + i), 
+            "doen_{}".format((idx * 4) + i),
             "The selected OEN signal for GPIO{}. The register value indicates the selected GPIO (Output Enable) OEN index from GPIO OEN list 0-49. See Table 2-41: GPIO OEN List for SYS_IOMUX (on page 97) for more information.".format((idx * 4) + i),
             "[{}:{}]".format((i * 8) + 5, i * 8),
             "read-write",
@@ -73,13 +73,13 @@ def generate_register_fmux_gpo_dout(idx, base):
     gpo_base = (idx - base) * 4
     gpo_end = gpo_base + 3
 
-    name = "gpo_dout{}_{}".format(gpo_base, gpo_end)
+    name = "gpo_dout_{}_{}".format(gpo_base, gpo_end)
     desc = "SYS IOMUX CFG SAIF SYSCFG FMUX GPIO {}-{} DOUT".format(gpo_base, gpo_end)
-    addr = "0x{:x}".format(idx * 4)
+    addr = idx * 4
 
     ndra = [
         (
-            "gpo{}_dout".format(gpo_base + i), 
+            "dout_{}".format(gpo_base + i),
             "The selected output signal for GPIO{}. The register value indicates the selected GPIO output index signal index from GPIO output signal list 0-107. See Table 2-41: GPIO OEN List for SYS_IOMUX (on page 97) for more information.".format(gpo_base + i),
             "[{}:{}]".format((i * 8) + 6, i * 8),
             "read-write",
@@ -87,7 +87,7 @@ def generate_register_fmux_gpo_dout(idx, base):
         for i in range(4)
     ]
 
-    return generate_register(name, desc, idx * 4, ndra, 32, reset_values[idx - base])
+    return generate_register(name, desc, addr, ndra, 32, reset_values[idx - base])
 
 def generate_register_fmux_gpi(idx, base):
     reset_values = [
@@ -107,153 +107,154 @@ def generate_register_fmux_gpi(idx, base):
 
     field_names = [
         [ # 32
-            "u0_WAVE511_i_uart_rxsin_cfg",
-            "u0_can_ctrl_rxd_cfg",
-            "u0_cdn_usb_over_current_n_io_cfg",
-            "u0_cdns_spdif_spdi_fi_cfg",
+            "wave511_uart_rxsin",
+            "can_rxd_0",
+            "usb_over_current",
+            "spdif_spdi_fi",
         ],
         [ # 33
-            "u0_clkrst_src_bypass_jtag_trstn_cfg",
-            "u0_dom_vout_top_u0_hdmi_tx_pin_cec_sda_in_cfg",
-            "u0_dom_vout_top_u0_hdmi_tx_pin_ddc_scl_in_cfg",
-            "u0_dom_vout_top_u0_hdmi_tx_pin_ddc_sda_in_cfg",
+            "jtag_trstn",
+            "hdmi_cec_sda",
+            "hdmi_ddc_scl",
+            "hdmi_ddc_sda",
         ],
         [ # 34
-            "u0_dom_vout_top_u0_hdmi_tx_pin_hpd_cfg",
-            "u0_i2c_ic_clk_in_a_cfg",
-            "u0_i2c_ic_data_in_a_cfg",
-            "u0_sdio_card_detect_n_cfg",
+            "hdmi_hpd",
+            "i2c_clk_0",
+            "i2c_data_0",
+            "sdio_detect_0",
         ],
         [ # 35
-            "u0_sdio_card_int_n_cfg",
-            "u0_sdio_card_write_prt_cfg",
-            "u0_uart_sin_cfg",
-            "u0_hifi4_jtck_cfg",
+            "sdio_int_0",
+            "sdio_write_prt_0",
+            "uart_sin_0",
+            "hifi4_jtck_0",
         ],
         [ # 36
-            "u0_hifi4_jtdi_cfg",
-            "u0_hifi4_jtms_cfg",
-            "u0_hifi4_jtrstn_cfg",
-            "u0_jtag_certification_tdi_cfg",
+            "hifi4_jtdi",
+            "hifi4_jtms",
+            "hifi4_jtrstn",
+            "jtag_tdi",
         ],
         [ # 37
-            "u0_jtag_certification_tms_cfg",
-            "u0_pdm_4mic_dmic0_din_cfg",
-            "u0_pdm_4mic_dmic1_din_cfg",
-            "u0_saif_audio_sdin_mux_i2srx_ext_sdin0_cfg",
+            "jtag_tms",
+            "pdm_dmic_0",
+            "pdm_dmic_1",
+            "audio_i2srx_0",
         ],
         [ # 38
-            "u0_saif_audio_sdin_mux_i2srx_ext_sdin1_cfg",
-            "u0_saif_audio_sdin_mux_i2srx_ext_sdin2_cfg",
-            "u0_ssp_spi_sspclkin_cfg",
-            "u0_ssp_spi_sspfssin_cfg",
+            "audio_i2srx_1",
+            "audio_i2srx_2",
+            "spi_clkin_0",
+            "spi_fssin_0",
         ],
         [ # 39
-            "u0_ssp_spi_ssprxd_cfg",
-            "u0_sys_crg_clk_jtag_tck_cfg",
-            "u0_sys_crg_ext_mclk_cfg",
-            "u0_sys_crg_i2srx_bclk_slv_cfg",
+            "spi_rxd_0",
+            "jtag_tck",
+            "mclk",
+            "i2srx_bclk_slv_0",
         ],
         [ # 40
-            "u0_sys_crg_i2srx_lrck_slv_cfg",
-            "u0_sys_crg_i2stx_bclk_slv_cfg",
-            "u0_sys_crg_i2stx_lrck_slv_cfg",
-            "u0_sys_crg_tdm_clk_slv_cfg",
+            "i2srx_lrck_slv_0",
+            "i2stx_bclk_slv_0",
+            "i2stx_lrck_slv_0",
+            "tdm_clk_slv_0",
         ],
         [ # 41
-            "u0_tdm16slot_pcm_rxd_cfg",
-            "u0_tdm16slot_pcm_synon_cfg",
-            "u1_can_ctrl_rxd_cfg",
-            "u1_i2c_ic_clk_in_a_cfg",
+            "pcm_rxd_0",
+            "pcm_synon_0",
+            "can_rxd_1",
+            "i2c_clk_1",
         ],
         [ # 42
-            "u1_i2c_ic_data_in_a_cfg",
-            "u1_sdio_card_detect_n_cfg",
-            "u1_sdio_card_int_n_cfg",
-            "u1_sdio_card_write_prt_cfg",
+            "i2c_data_1",
+            "sdio_detect_1",
+            "sdio_int_1",
+            "sdio_write_prt_1",
         ],
         [ # 43
-            "u1_sdio_ccmd_in_cfg",
-            "u1_sdio_cdata_in_0_cfg",
-            "u1_sdio_cdata_in_1_cfg",
-            "u1_sdio_cdata_in_2_cfg",
+            "sdio_ccmd_1",
+            "sdio_cdata_0",
+            "sdio_cdata_1",
+            "sdio_cdata_2",
         ],
         [ # 44
-            "u1_sdio_cdata_in_3_cfg",
-            "u1_sdio_cdata_in_4_cfg",
-            "u1_sdio_cdata_in_5_cfg",
-            "u1_sdio_cdata_in_6_cfg",
+            "sdio_cdata_3",
+            "sdio_cdata_4",
+            "sdio_cdata_5",
+            "sdio_cdata_6",
         ],
         [ # 45
-            "u1_sdio_cdata_in_7_cfg",
-            "u1_sdio_data_strobe_cfg",
-            "u1_uart_cts_n_cfg",
-            "u1_uart_sin_cfg",
+            "sdio_cdata_7",
+            "sdio_data_strobe",
+            "uart_cts_1",
+            "uart_sin_1",
         ],
         [ # 46
-            "u1_ssp_spi_ssp_clkin_cfg",
-            "u1_ssp_spi_sspfssin_cfg",
-            "u1_ssp_spi_ssprxd_cfg",
-            "u2_i2c_ic_clk_in_a_cfg",
+            "spi_clkin_1",
+            "spi_fssin_1",
+            "spi_rxd_1",
+            "i2c_clk_2",
         ],
         [ # 47
-            "u2_i2c_ic_data_in_a_cfg",
-            "u2_uart_cts_n_cfg",
-            "u2_uart_sin_cfg",
-            "u2_ssp_spi_sspclkin_cfg",
+            "i2c_data_2",
+            "uart_cts_2",
+            "uart_sin_2",
+            "spi_clkin_2",
         ],
         [ # 48
-            "u2_ssp_spi_sspfssin_cfg",
-            "u2_ssp_spi_ssprxd_cfg",
-            "u3_i2c_ic_clk_in_a_cfg",
-            "u3_i2c_ic_data_in_a_cfg",
+            "spi_fssin_2",
+            "spi_rxd_2",
+            "i2c_clk_3",
+            "i2c_data_3",
         ],
         [ # 49
-            "u3_uart_sin_cfg",
-            "u3_ssp_spi_sspclkin_cfg",
-            "u3_ssp_spi_sspfssin_cfg",
-            "u3_ssp_spi_ssprxd_cfg",
+            "uart_sin_3",
+            "spi_clkin_3",
+            "spi_fssin_3",
+            "spi_rxd_3",
         ],
         [ # 50
-            "u4_i2c_ic_clk_in_a_cfg",
-            "u4_i2c_ic_data_in_a_cfg",
-            "u4_uart_cts_n_cfg",
-            "u4_uart_sin_cfg",
+            "i2c_clk_4",
+            "i2c_data_4",
+            "uart_cts_4",
+            "uart_sin_4",
         ],
         [ # 51
-            "u4_ssp_spi_sspclkin_cfg",
-            "u4_ssp_spi_sspfssin_cfg",
-            "u4_ssp_spi_ssprxd_cfg",
-            "u5_i2c_ic_clk_in_a_cfg",
+            "spi_clkin_4",
+            "spi_fssin_4",
+            "spi_rxd_4",
+            "i2c_clk_5",
         ],
         [ # 52
-            "u5_i2c_ic_data_in_a_cfg",
-            "u5_uart_cts_n_cfg",
-            "u5_uart_sin_cfg",
-            "u5_ssp_spi_sspclkin_cfg",
+            "i2c_data_5",
+            "uart_cts_5",
+            "uart_sin_5",
+            "spi_clkin_5",
         ],
         [ # 53
-            "u5_ssp_spi_sspfssin_cfg",
-            "u5_ssp_spi_ssprxd_cfg",
-            "u6_i2c_ic_clk_in_a_cfg",
-            "u6_i2c_ic_data_in_a_cfg",
+            "spi_fssin_5",
+            "spi_rxd_5",
+            "i2c_clk_6",
+            "i2c_data_6",
         ],
         [ # 54
-            "u6_ssp_spi_sspclkin_cfg",
-            "u6_ssp_spi_sspfssin_cfg",
-            "u6_ssp_spi_ssprxd_cfg",
+            "spi_clkin_6",
+            "spi_fssin_6",
+            "spi_rxd_6",
             "",
         ],
     ]
 
     gpi_base = (idx - base) * 4
 
-    name = "gpi{}".format(gpi_base)
+    name = "gpi_{}".format(idx - base)
     desc = """SYS IOMUX CFG SAIF SYSCFG FMUX GPIO GPI {} - The register can be used to configure the selected GPIO connector number for input signals. The signal name is indicated in the "Name" column of the following table per StarFive naming conventions. For example, name "u0_WAVE511_i_uart_rxsin_cfg" indicates the corresponding input signal is "u0_WAVE511.i_uart_rxsin". See GPIO Input Signals (on page 107) for a complete list of the input GPIO signals.""".format(gpi_base)
+    addr = idx * 4
 
     ndra = [
         (
-            field_names[idx - base][i], 
+            field_names[idx - base][i],
             "The register value indicates the selected GPIO number + 2 (GPIO2 - GPIO63, GPIO0 and GPIO1 are not available) for the input signal.",
             "[{}:{}]".format((i * 8) + 6, i * 8),
             "read-write",
@@ -261,38 +262,38 @@ def generate_register_fmux_gpi(idx, base):
         for i in range(4) if field_names[idx - base][i]
     ]
 
-    return generate_register(name, desc, idx * 4, ndra, 32, reset_values[idx - base])
+    return generate_register(name, desc, addr, ndra, 32, reset_values[idx - base])
 
 def generate_registers_ioirq():
-    txt = generate_register("ioirq0", "Enable GPIO IRQ function", 0xdc, [
-        ("gpioen0", "1: Enable, 0: Disable", "[0:0]", "read-write")
+    txt = generate_register("ioirq_0", "Enable GPIO IRQ function", 0xdc, [
+        ("gpen_0", "1: Enable, 0: Disable", "[0:0]", "read-write")
     ])
 
     d_fn_fd_a = [
-        ("GPIO Interrupt Edge Trigger Selector", "gpiois{}", "1: Edge trigger, 0: Level trigger", "read-write"), 
-        ("GPIO Interrupt Clear", "gpioic{}", "1: Do not clear the register, 0: Clear the register", "read-write"), 
-        ("GPIO Interrupt Both Edge Trigger Selector", "gpioibe{}", "1: Trigger on both edges, 0: Trigger on a single edge", "read-write"), 
-        ("GPIO Interrupt Edge Value", "gpioiev{}", "1: Positive/Low, 0: Negative/High", "read-write"), 
-        ("GPIO Interrupt Edge Mask Selector", "gpioie{}", "1: Unmask, 0: Mask", "read-write"), 
-        ("GPIO Register Interrupt Status", "gpioris{}", "Status of the edge trigger. The register can be cleared by writing gpio ic", "read-only"), 
-        ("GPIO Masked Interrupt Status", "gpiomis{}", "The masked GPIO IRQ status", "read-only"), 
-        ("GPIO Synchronization Status", "gpio_in_sync2_{}", "Status of the gpio_in after synchronization", "read-only"),
+        ("GPIO Interrupt Edge Trigger Selector", "is_{}", "1: Edge trigger, 0: Level trigger", "read-write"),
+        ("GPIO Interrupt Clear", "ic_{}", "1: Do not clear the register, 0: Clear the register", "read-write"),
+        ("GPIO Interrupt Both Edge Trigger Selector", "ibe_{}", "1: Trigger on both edges, 0: Trigger on a single edge", "read-write"),
+        ("GPIO Interrupt Edge Value", "iev_{}", "1: Positive/Low, 0: Negative/High", "read-write"),
+        ("GPIO Interrupt Edge Mask Selector", "ie_{}", "1: Unmask, 0: Mask", "read-write"),
+        ("GPIO Register Interrupt Status", "ris_{}", "Status of the edge trigger. The register can be cleared by writing gpio ic", "read-only"),
+        ("GPIO Masked Interrupt Status", "mis_{}", "The masked GPIO IRQ status", "read-only"),
+        ("GPIO Synchronization Status", "in_sync2_{}", "Status of the gpio_in after synchronization", "read-only"),
     ]
 
     for idx in range(len(d_fn_fd_a)):
         (desc, field_name, field_desc, access) = d_fn_fd_a[idx]
 
-        addr_idx = 56 + (idx * 2)
+        addr_idx = 0xe0 + (idx * 8)
         txt += generate_register(
-            "ioirq{}".format((idx * 2) + 1),
+            "ioirq_{}".format((idx * 2) + 1),
             "SYS IOMUX CFGSAIF SYSCFG IOIRQ {}: {}".format(addr_idx, desc),
             addr_idx,
             [(field_name.format(0), field_desc, "[31:0]", access)]
         )
 
-        addr_idx += 1
+        addr_idx += 4
         txt += generate_register(
-            "ioirq{}".format((idx * 2) + 2),
+            "ioirq_{}".format((idx * 2) + 2),
             "SYS IOMUX CFGSAIF SYSCFG IOIRQ {}: {}".format(addr_idx, desc),
             addr_idx,
             [(field_name.format(1), field_desc, "[31:0]", access)]
@@ -304,40 +305,38 @@ def generate_registers_padcfg():
     txt = ""
 
     for idx in range(64):
-        txt += generate_register_padcfg(idx, "gpio{}".format(idx))
+        txt += generate_register_padcfg(idx, "gpio_{}".format(idx))
 
     txt += generate_register_padcfg(64, "sd0_clk")
     txt += generate_register_padcfg(65, "sd0_cmd")
 
     for idx in range(8):
-        txt += generate_register_padcfg(66 + (idx * 4), "sd0_data{}".format(idx))
+        txt += generate_register_padcfg(66 + idx, "sd0_data_{}".format(idx))
 
     txt += generate_register_padcfg(74, "sd0_strb")
 
     names = [
-        "mdc", "mdio", "rxd0", "rxd1", "rxd2", "rxd3", "rxdv",
-        "rxc", "txd0", "txd1", "txd2", "txd3", "txen", "txc",
+        "mdc", "mdio", "rxd_0", "rxd_1", "rxd_2", "rxd_3", "rxdv",
+        "rxc", "txd_0", "txd_1", "txd_2", "txd_3", "txen", "txc",
     ]
     for idx in range(len(names)):
-        name = "padcfg_gmac1_{}_syscon".format(names[idx])
+        name = "gmac1_{}".format(names[idx])
         desc = "GPIO GMAC1 {} Pad Configuration".format(names[idx].upper())
-        ndra = [("padcfg_pad_gmac1_{}_syscon".format(names[idx]), "", "[1:0]", "read-write")]
+        ndra = [("cfg", "", "[1:0]", "read-write")]
 
-        txt += generate_register(name, desc,  75 + (idx * 4), ndra, 32, 0x2)
+        txt += generate_register(name, desc, 0x24c + (idx * 4), ndra, 32, 0x2)
 
     txt += generate_register_padcfg(89, "qspi_sclk")
-    txt += generate_register_padcfg(90, "qspi_csn0")
- 
-    for idx in range(0, 4):
-        txt += generate_register_padcfg(91 + (idx * 4), "qspi_data{}".format(idx))
+    txt += generate_register_padcfg(90, "qspi_csn_0")
+
+    for idx in range(4):
+        txt += generate_register_padcfg(91 + idx, "qspi_data_{}".format(idx))
 
     return txt
 
-def generate_register_padcfg(idx, pin):
-    name = "padcfg_{}".format(pin)
-    addr = 288 + (idx * 4)
-    desc = "SYS IOMUX CFG SAIF SYSCFG PADCFG {}: {}".format(addr, pin.upper())
-    base = 72
+def generate_register_padcfg(idx, name):
+    addr = 0x120 + (idx * 4)
+    desc = "SYS IOMUX CFG SAIF SYSCFG PADCFG {}: {}".format(addr, name.upper())
 
     reset_values = [
         # GPIO DATA
@@ -386,7 +385,7 @@ def generate_register_padcfg(idx, pin):
         ("pos", "Power-on-Start (POS) enabler - 1: Enable active pull down for loss of core power, 0: Active pull-down capability disabled", "[7:7]", "read-write"),
     ]
 
-    return generate_register(name, desc, addr, ndra, 32, reset_values[idx - base]) 
+    return generate_register(name, desc, addr, ndra, 32, reset_values[idx])
 
 def generate_registers_func_sel():
     # 0
@@ -394,65 +393,65 @@ def generate_registers_func_sel():
 
     for idx in range(0, 10):
         bit = 2 + (idx * 3)
-        nfras[0].append(("pad_gpio1{}".format(idx), "GPIO", "[{}:{}]".format(bit + 2, bit), "read-write"))
+        nfras[0].append(("pad_gpio_1{}".format(idx), "GPIO", "[{}:{}]".format(bit + 2, bit), "read-write"))
 
     # 1
     nfras.append([
         (
-            "pad_gpio{}".format(20 + i),
+            "pad_gpio_{}".format(20 + i),
             "GPIO",
             "[{}:{}]".format((i * 3) + 2, i * 3),
             "read-write"
         )
-        for i in range(0, 10)
+        for i in range(10)
     ])
 
     # 2
     nfras.append([
         (
-            "pad_gpio{}".format(30 + i),
+            "pad_gpio_{}".format(30 + i),
             "GPIO",
             "[{}:{}]".format((i * 3) + 2, i * 3),
             "read-write"
         )
-        for i in range(0, 11)
+        for i in range(11)
     ])
 
     # 3
     nfras.append([
         (
-            "pad_gpio{}".format(41 + i),
+            "pad_gpio_{}".format(41 + i),
             "GPIO",
             "[{}:{}]".format((i * 3) + 2, i * 3),
             "read-write"
         )
-        for i in range(0, 11)
+        for i in range(11)
     ])
 
     # 4
     nfras.append([
         (
-            "pad_gpio{}".format(52 + i),
+            "pad_gpio_{}".format(52 + i),
             "GPIO",
             "[{}:{}]".format((i * 2) + 1, i * 2),
             "read-write"
         )
-        for i in range(0, 3)
+        for i in range(3)
     ])
 
     for i in range(4, 11):
         bit = i * 3
-        nfras[4].append(("pad_gpio{}".format(52 + i), "GPIO", "[{}:{}]".format(bit + 2, bit), "read-write"))
+        nfras[4].append(("pad_gpio_{}".format(52 + i), "GPIO", "[{}:{}]".format(bit + 2, bit), "read-write"))
 
     nfras[4].append(("pad_gpio63", "GPIO", "[31:30]", "read-write"))
 
     # 5
-    nfras.append([("pad_gpio6", "GPIO", "[1:0]", "read-write")])
+    nfras.append([("pad_gpio_6", "GPIO", "[1:0]", "read-write")])
 
     for i in range(1, 4):
         nfras[5].append(
             (
-                "pad_gpio{}".format(6 + i),
+                "pad_gpio_{}".format(6 + i),
                 "GPIO",
                 "[{}:{}]".format((i * 3) + 2, i * 3),
                 "read-write"
@@ -464,7 +463,7 @@ def generate_registers_func_sel():
         bit = 11 + (i * 3)
         nfras[5].append(
             (
-                "u0_dom_isp_top_u0_vin_dvp_data_c{}".format(idx[i]),
+                "vin_dvp_data_{}".format(idx[i]),
                 "DVP_DATA",
                 "[{}:{}]".format(bit + 2, bit),
                 "read-write"
@@ -474,7 +473,7 @@ def generate_registers_func_sel():
     # 6
     nfras.append([
         (
-            "u0_dom_isp_top_u0_vin_dvp_data_c{}".format(5 + i),
+            "vin_dvp_data_{}".format(5 + i),
             "DVP_DATA",
             "[{}:{}]".format((i * 3) + 2, i * 3),
             "read-write"
@@ -482,9 +481,9 @@ def generate_registers_func_sel():
         for i in range(5)
     ])
 
-    nfras[6].append(("u0_dom_isp_top_u0_vin_dvp_hvalid_c", "DVP_HSYNC", "[17:15]", "read-write"))
-    nfras[6].append(("u0_dom_isp_top_u0_vin_dvp_vvalid_c", "DVP_VSYNC", "[20:18]", "read-write"))
-    nfras[6].append(("u0_sys_crg_dvp_clk", "DVP_CLK", "[23:21]", "read-write"))
+    nfras[6].append(("vin_dvp_hvalid", "DVP_HSYNC", "[17:15]", "read-write"))
+    nfras[6].append(("vin_dvp_vvalid", "DVP_VSYNC", "[20:18]", "read-write"))
+    nfras[6].append(("dvp_clk", "DVP_CLK", "[23:21]", "read-write"))
 
     txt = ""
 
@@ -494,9 +493,9 @@ def generate_registers_func_sel():
     return txt
 
 def generate_register_sys_iomux_cfgsaif_syscfg_func_sel(idx, name_func_range_access):
-    name = "func_sel{}".format(idx)
-    desc = "SYS IOMUX CFG SAIF SYSCFG {}".format(idx)
+    name = "func_sel_{}".format(idx)
     addr = 668 + (idx * 4)
+    desc = "SYS IOMUX CFG SAIF SYSCFG {}".format(addr)
 
     func_desc = {
             "GMAC": "Function selector of GMAC1_RXC: * Function 0: u0_sys_crg.clk_gmac1_rgmii_rx, * Function 1: u0_sys_crg.clk_gmac1_rmii_ref, * Function 2: None, * Function 3: None",
@@ -507,6 +506,6 @@ def generate_register_sys_iomux_cfgsaif_syscfg_func_sel(idx, name_func_range_acc
             "DVP_CLK": "Function Selector of DVP_CLK, see Function 2 for more information",
     }
 
-    ndra = [("{}_func_sel".format(n), func_desc[f], r, a) for (n, f, r, a) in name_func_range_access]
+    ndra = [(n, func_desc[f], r, a) for (n, f, r, a) in name_func_range_access]
 
     return generate_register(name, desc, addr, ndra)
