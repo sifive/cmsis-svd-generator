@@ -55,77 +55,77 @@ def generate_registers_starfive_jh7110_sys_syscon(dts, peripheral):
 
 def generate_register_sysconsaif_syscfg0():
     return generate_register("sys_syscfg_0", "SYS SYSCONSAIF SYSCFG 0", 0x0, [
-        ("scfg_e24_remap_haddr", "", "[3:0]", "read-write"),
-        ("scfg_hifi4_idma_remap_araddr", "", "[7:4]", "read-write"),
-        ("scfg_hifi4_idma_remap_awaddr", "", "[11:8]", "read-write"),
-        ("scfg_hifi4_sys_remap_araddr", "", "[15:12]", "read-write"),
-        ("scfg_hifi4_sys_remap_awaddr", "", "[19:16]", "read-write"),
-        ("scfg_jpg_remap_araddr", "", "[23:20]", "read-write"),
-        ("scfg_jpg_remap_awaddr", "", "[27:24]", "read-write"),
-        ("scfg_sd0_remap_araddr", "", "[31:28]", "read-write")
+        ("e24_remap_haddr", "", "[3:0]", "read-write"),
+        ("hifi4_idma_remap_araddr", "", "[7:4]", "read-write"),
+        ("hifi4_idma_remap_awaddr", "", "[11:8]", "read-write"),
+        ("hifi4_sys_remap_araddr", "", "[15:12]", "read-write"),
+        ("hifi4_sys_remap_awaddr", "", "[19:16]", "read-write"),
+        ("jpg_remap_araddr", "", "[23:20]", "read-write"),
+        ("jpg_remap_awaddr", "", "[27:24]", "read-write"),
+        ("sd0_remap_araddr", "", "[31:28]", "read-write")
     ])
 
 def generate_register_sysconsaif_syscfg4():
     return generate_register("sys_syscfg_1", "SYS SYSCONSAIF SYSCFG 4", 0x4, [
-        ("scfg_sd1_remap_awaddr", "", "[3:0]", "read-write"),
-        ("scfg_sec_haddr_remap", "", "[7:4]", "read-write"),
-        ("scfg_usb_araddr_remap", "", "[11:8]", "read-write"),
-        ("scfg_usb_awaddr_remap", "", "[15:12]", "read-write"),
-        ("scfg_vdec_remap_awaddr", "", "[19:16]", "read-write"),
-        ("scfg_venc_remap_araddr", "", "[23:20]", "read-write"),
-        ("scfg_venc_remap_awaddr", "", "[27:24]", "read-write"),
-        ("scfg_vout0_remap_araddr", "", "[31:28]", "read-write")
+        ("sd1_remap_awaddr", "", "[3:0]", "read-write"),
+        ("sec_haddr_remap", "", "[7:4]", "read-write"),
+        ("usb_araddr_remap", "", "[11:8]", "read-write"),
+        ("usb_awaddr_remap", "", "[15:12]", "read-write"),
+        ("vdec_remap_awaddr", "", "[19:16]", "read-write"),
+        ("venc_remap_araddr", "", "[23:20]", "read-write"),
+        ("venc_remap_awaddr", "", "[27:24]", "read-write"),
+        ("vout0_remap_araddr", "", "[31:28]", "read-write")
     ])
 
 def generate_register_sysconsaif_syscfg8():
     return generate_register("sys_syscfg_2", "SYS SYSCONSAIF SYSCFG 8", 0x8, [
-        ("scfg_vout0_remap_awaddr", "", "[3:0]", "read-write"),
-        ("scfg_vout1_remap_araddr", "", "[7:4]", "read-write"),
-        ("scfg_vout1_remap_awaddr", "", "[11:8]", "read-write")
+        ("vout0_remap_awaddr", "", "[3:0]", "read-write"),
+        ("vout1_remap_araddr", "", "[7:4]", "read-write"),
+        ("vout1_remap_awaddr", "", "[11:8]", "read-write")
     ])
 
 def generate_register_sysconsaif_syscfg12():
     return generate_register("sys_syscfg_3", "SYS SYSCONSAIF SYSCFG 12: Set the GPIO voltage of all the 4 GPIO groups in this register", 0xc, [
-        ("scfg_vout0_remap_awaddr_gpio0", "0: GPIO Group 0 (GPIO21-35) voltage select 3.3V, 1: GPIO Group 0 (GPIO21-35) voltage select 1.8V", "[0:0]", "read-write"),
-        ("scfg_vout0_remap_awaddr_gpio1", "0: GPIO Group 1 (GPIO36-63) voltage select 3.3V, 1: GPIO Group 1 (GPIO36-63) voltage select 1.8V", "[1:1]", "read-write"),
-        ("scfg_vout0_remap_awaddr_gpio2", "0: GPIO Group 2 (GPIO0-6) voltage select 3.3V, 1: GPIO Group 2 (GPIO0-6) voltage select 1.8V", "[2:2]", "read-write"),
-        ("scfg_vout0_remap_awaddr_gpio3", "0: GPIO Group 3 (GPIO7-20) voltage select 3.3V, 1: GPIO Group 3 (GPIO7-20) voltage select 1.8V", "[3:3]", "read-write")
+        ("vout0_remap_awaddr_gpio0", "0: GPIO Group 0 (GPIO21-35) voltage select 3.3V, 1: GPIO Group 0 (GPIO21-35) voltage select 1.8V", "[0:0]", "read-write"),
+        ("vout0_remap_awaddr_gpio1", "0: GPIO Group 1 (GPIO36-63) voltage select 3.3V, 1: GPIO Group 1 (GPIO36-63) voltage select 1.8V", "[1:1]", "read-write"),
+        ("vout0_remap_awaddr_gpio2", "0: GPIO Group 2 (GPIO0-6) voltage select 3.3V, 1: GPIO Group 2 (GPIO0-6) voltage select 1.8V", "[2:2]", "read-write"),
+        ("vout0_remap_awaddr_gpio3", "0: GPIO Group 3 (GPIO7-20) voltage select 3.3V, 1: GPIO Group 3 (GPIO7-20) voltage select 1.8V", "[3:3]", "read-write")
     ])
 
 def generate_register_sysconsaif_syscfg16():
     return generate_register("sys_syscfg_4", "SYS SYSCONSAIF SYSCFG 16", 0x10, [
-        ("u0_coda12_o_cur_inst_a", "Tie 0 in JPU internal, do not care", "[1:0]", "read-only"),
-        ("u0_wave511_o_vpu_idle", "VPU monitoring signal", "[2:2]", "read-only"),
-        ("u0_can_ctrl_can_fd_enable", "", "[3:3]", "read-write"),
-        ("u0_can_ctrl_host_ecc_disable", "", "[4:4]", "read-write"),
-        ("u0_can_ctrl_host_if", "", "[23:5]", "read-only"),
-        ("u0_cdns_qspi_scfg_qspi_sclk_dlychain_sel", "des_qspi_sclk_dla: clock delay", "[28:24]", "read-only")
+        ("coda12_cur_inst", "Tie 0 in JPU internal, do not care", "[1:0]", "read-only"),
+        ("wave511_vpu_idle", "VPU monitoring signal", "[2:2]", "read-only"),
+        ("can_ctrl_fd_enable_0", "", "[3:3]", "read-write"),
+        ("can_ctrl_host_ecc_disable_0", "", "[4:4]", "read-write"),
+        ("can_ctrl_host_if_0", "", "[23:5]", "read-only"),
+        ("qspi_sclk_dlychain_sel", "des_qspi_sclk_dla: clock delay", "[28:24]", "read-only")
     ])
 
 def generate_register_sysconsaif_syscfg20():
     fields = generate_fields_list_sram_config("u0_cdns_qspi_scfg_sram_config", 0)
     fields.extend(generate_fields_list_sram_config("u0_cdns_spdif_scfg_sram_config", 12))
     fields.extend([
-        ("u0_cdns_spdif_trmodeo", "1 for transmitter 0 for receiver", "[24:24]", "read-only"),
-        ("u0_i2c_ic_en", "I2C interface enable", "[25:25]", "read-only"),
-        ("u0_sdio_data_strobe_phase_ctrl", "Data strobe delay chain select", "[30:26]", "read-write"),
-        ("u0_sdio_hbig_endian", "AHB bus interface endianness: 1: Big-endian AHB bus interface, 0: Little-endian AHB bus interface", "[31:31]", "read-write")
+        ("spdif_trmodeo", "1 for transmitter 0 for receiver", "[24:24]", "read-only"),
+        ("i2c_ic_en", "I2C interface enable", "[25:25]", "read-only"),
+        ("sdio_data_strobe_phase_ctrl", "Data strobe delay chain select", "[30:26]", "read-write"),
+        ("sdio_hbig_endian", "AHB bus interface endianness: 1: Big-endian AHB bus interface, 0: Little-endian AHB bus interface", "[31:31]", "read-write")
     ])
     return generate_register("sys_syscfg_5", "SYS SYSCONSAIF SYSCFG 20", 0x14, fields)
 
 def generate_register_sysconsaif_syscfg24():
     fields = [
-        ("u0_sdio_m_hbig_endian", "AHB master bus interface endianess: 1: Big-endian AHB bus interface, 0: Little-endian AHB bus interface", "[0:0]", "read-write"),
-        ("u0_i2srx_3ch_adc_ena", "", "[1:1]", "read-write"),
-        ("u0_intmem_rom_sram_scfg_disable_rom", "", "[2:2]", "read-write")
+        ("sdio_m_hbig_endian", "AHB master bus interface endianess: 1: Big-endian AHB bus interface, 0: Little-endian AHB bus interface", "[0:0]", "read-write"),
+        ("i2srx_adc_en", "", "[1:1]", "read-write"),
+        ("intmem_rom_sram_scfg_disable_rom", "", "[2:2]", "read-write")
     ]
 
     fields.extend(generate_fields_list_sram_config("u0_intmem_rom_sram_sram_config", 3))
 
     fields.extend([
-        ("u0_jtag_daisy_chain_jtag_en_0", "", "[15:15]", "read-write"),
-        ("u0_jtag_daisy_chain_jtag_en_1", "", "[16:16]", "read-write"),
-        ("u0_pdrstn_split_sw_usbpipe_plugen", "", "[17:17]", "read-write"),
+        ("jtag_daisy_chain_en_0", "", "[15:15]", "read-write"),
+        ("jtag_daisy_chain_en_1", "", "[16:16]", "read-write"),
+        ("pdrstn_usbpipe_plugen", "", "[17:17]", "read-write"),
         ("pll0_cpi_bias", "", "[20:18]", "read-write"),
         ("pll0_cpp_bias", "", "[23:21]", "read-write"),
         ("pll0_dacpd", "", "[24:24]", "read-write"),
@@ -135,7 +135,7 @@ def generate_register_sysconsaif_syscfg24():
     return generate_register("sys_syscfg_6", "SYS SYSCONSAIF SYSCFG 24", 0x18, fields)
 
 def generate_register_sysconsaif_syscfg28():
-    return generate_register("sys_syscfg_7", "SYS SYSCONSAIF SYSCFG 28", 0x1c, [("u0_pll_wrap_pll0_fbdiv", "", "[11:0]", "read-write")])
+    return generate_register("sys_syscfg_7", "SYS SYSCONSAIF SYSCFG 28", 0x1c, [("pll0_fbdiv", "", "[11:0]", "read-write")])
 
 def generate_register_sysconsaif_syscfg32():
     return generate_register("sys_syscfg_8", "SYS SYSCONSAIF SYSCFG 32", 0x20, [
@@ -197,8 +197,8 @@ def generate_register_sysconsaif_syscfg52():
         ("pll2_testen", "", "[6:6]", "read-write"),
         ("pll2_testsel", "", "[8:7]", "read-write"),
         ("pll_test_mode", "PLL test mode, only used for PLL BIST through jtag2apb", "[9:9]", "read-write"),
-        ("u0_saif_audio_sdin_mux_scfg_i2sdin_sel", "", "[17:10]", "read-write"),
-        ("u0_sft7110_noc_bus_clock_gating_off", "", "[18:18]", "read-write")
+        ("audio_i2sdin_sel", "", "[17:10]", "read-write"),
+        ("noc_bus_clock_gating_off", "", "[18:18]", "read-write")
     ]
 
     for idx in range(0, 6):
@@ -215,7 +215,7 @@ def generate_register_sysconsaif_syscfg56():
         fields.extend(generate_fields_noc_bus_oic_evemon(idx, 1 + (idx * 2)))
 
     for idx in range(0, 5):
-        name = "u0_sft7110_noc_bus_oic_ignore_modifiable_{}".format(idx)
+        name = "noc_bus_oic_ignore_modifiable_{}".format(idx)
 
         bit = 5 + idx
         bit_range = "[{}:{}]".format(bit, bit)
@@ -229,23 +229,23 @@ def generate_register_noc_bus_oic_qch_clock_stop(cfg, addr, idx):
     desc = "SYS SYSCONSAIF SYSCFG {}".format(cfg * 4) 
 
     return generate_register(name, desc, addr, [
-        ("u0_noc_bus_oic_qch_clock_stop_threshold_{}".format(idx), "", "[31:0]", "read-write")
+        ("noc_bus_oic_qch_clock_stop_threshold_{}".format(idx), "", "[31:0]", "read-write")
     ])
 
 def generate_register_sysconsaif_syscfg96():
     fields = [
-        ("u0_tdm16slot_clkpol", "", "[0:0]", "read-only"),
-        ("u0_tdm16slot_pcm_ms", "", "[1:1]", "read-only")
+        ("tdm16slot_clkpol", "", "[0:0]", "read-only"),
+        ("tdm16slot_pcm_ms", "", "[1:1]", "read-only")
     ]
 
-    for idx in range(0, 3):
+    for idx in range(3):
         bit = 2 + (idx * 10)
 
         bit_range = "[{}:{}]".format(bit + 4, bit)
-        fields.append(("u0_trace_mtx_scfg_c{}_in0_ctl".format(idx), "", bit_range, "read-write"))
+        fields.append(("u0_trace_mtx_in0_{}".format(idx), "", bit_range, "read-write"))
 
         bit_range = "[{}:{}]".format(bit + 9, bit + 5)
-        fields.append(("u0_trace_mtx_scfg_c{}_in1_ctl".format(idx), "", bit_range, "read-write"))
+        fields.append(("u0_trace_mtx_in1_{}".format(idx), "", bit_range, "read-write"))
 
     return generate_register("sys_syscfg_24", "SYS SYSCONSAIF SYSCFG 96", 0x60, fields)
 
@@ -303,48 +303,48 @@ def generate_register_sysconsaif_syscfg132():
 def generate_register_sysconsaif_syscfg136():
     fields = generate_fields_list_sram_config("u0_venc_intsram_sram_config", 0)
     fields.extend([
-        ("u0_wave420l_i_ipu_current_buffer", "This signal indicates which buffer is currently active so that the VPU can correctly use the ipu_end_of_row signal for row counter.", "[14:12]", "read-write"),
-        ("u0_wave420l_i_ipu_end_of_row", "This signal is flipped every time when the IPU completes writing a row.", "[15:15]", "read-write"),
-        ("u0_wave420l_i_ipu_new_frame", "This signal is flipped every time when the IPU completes writing a new frame.", "[16:16]", "read-write"),
-        ("u0_wave420l_o_vpu_idle", "VPU monitoring signal. This signal gives out an opposite value of VPU_BUSY register.", "[17:17]", "read-only"),
-        ("u1_can_ctrl_can_fd_enable", "", "[18:18]", "read-write"),
-        ("u1_can_ctrl_host_ecc_disable", "", "[19:19]", "read-write")
+        ("wave420l_ipu_current_buffer", "This signal indicates which buffer is currently active so that the VPU can correctly use the ipu_end_of_row signal for row counter.", "[14:12]", "read-write"),
+        ("wave420l_ipu_end_of_row", "This signal is flipped every time when the IPU completes writing a row.", "[15:15]", "read-write"),
+        ("wave420l_ipu_new_frame", "This signal is flipped every time when the IPU completes writing a new frame.", "[16:16]", "read-write"),
+        ("wave420l_vpu_idle", "VPU monitoring signal. This signal gives out an opposite value of VPU_BUSY register.", "[17:17]", "read-only"),
+        ("can_ctrl_fd_enable_1", "", "[18:18]", "read-write"),
+        ("can_ctrl_host_ecc_disable_1", "", "[19:19]", "read-write")
     ])
 
     return generate_register("sys_syscfg_34", "SYS SYSCONSAIF SYSCFG 136", 0x88, fields)
 
 def generate_register_sysconsaif_syscfg140():
-    fields = [("u1_can_ctrl_host_if", "", "[18:0]", "read-only")]
+    fields = [("can_ctrl_host_if_1", "", "[18:0]", "read-only")]
     fields.extend(generate_fields_list_sram_config("u1_gmac5_axi64_scfg_ram_cfg", 19))
 
     return generate_register("sys_syscfg_35", "SYS SYSCONSAIF SYSCFG 140", 0x8c, fields)
 
 def generate_register_sysconsaif_syscfg144():
     return generate_register("sys_syscfg_36", "SYS SYSCONSAIF SYSCFG 144", 0x90, [
-        ("u1_gmac5_axi64_mac_speed_0", "", "[1:0]", "read-only"),
-        ("u1_gmac5_axi64_phy_intf_sel_i", "Active PHY Selected | When you have multiple GMAC PHY interfaces in your configuration, this field indicates the sampled value of the PHY selector during reset de-assertion. | Values: 0x0:(GMII or MII), 0x01:RGMII, 0x2:SGMII, 0x3:TBI, 0x4:RMII, 0x5:RTBI, 0x6:SMII, 0x7:REVMII", "[4:2]", "read-write")
+        ("gmac5_axi64_mac_speed", "", "[1:0]", "read-only"),
+        ("gmac5_axi64_phy_intf_sel", "Active PHY Selected | When you have multiple GMAC PHY interfaces in your configuration, this field indicates the sampled value of the PHY selector during reset de-assertion. | Values: 0x0:(GMII or MII), 0x01:RGMII, 0x2:SGMII, 0x3:TBI, 0x4:RMII, 0x5:RTBI, 0x6:SMII, 0x7:REVMII", "[4:2]", "read-write")
     ])
 
 def generate_register_sysconsaif_syscfg148():
     return generate_register("sys_syscfg_37", "SYS SYSCONSAIF SYSCFG 148", 0x94, [
-        ("u1_gmac5_axi64_ptp_timestamp_o_31_0", "", "[31:0]", "read-only")
+        ("gmac5_axi64_ptp_timestamp_0_31", "", "[31:0]", "read-only")
     ])
 
 def generate_register_sysconsaif_syscfg152():
     return generate_register("sys_syscfg_38", "SYS SYSCONSAIF SYSCFG 152", 0x98, [
-        ("u1_gmac5_axi64_ptp_timestamp_o_63_32", "", "[31:0]", "read-only")
+        ("gmac5_axi64_ptp_timestamp_32_63", "", "[31:0]", "read-only")
     ])
 
 def generate_register_sysconsaif_syscfg156():
     fields = [
-        ("u1_i2c_ic_en", "I2C interface enable.", "[0:0]", "read-only"),
-        ("u1_sdio_data_strobe_phase_ctrl", "Data strobe delay chain select.", "[5:1]", "read-write"),
-        ("u1_sdio_hbig_endian", "AHB bus interface endianness: 1: Big-endian AHB bus interface, 0: Little-endian AHB bus interface", "[6:6]", "read-write"),
-        ("u1_sdio_m_hbig_endian", "AHB bus interface endianness: 1: Big-endian AHB bus interface, 0: Little-endian AHB bus interface", "[7:7]", "read-write"),
-        ("u1_reset_ctrl_clr_reset_status", "", "[8:8]", "read-write"),
-        ("u1_reset_ctrl_pll_timecnt_finish", "", "[9:9]", "read-only"),
-        ("u1_reset_ctrl_rstn_sw", "", "[10:10]", "read-write"),
-        ("u1_reset_ctrl_sys_reset_status", "", "[14:11]", "read-only")
+        ("i2c_ic_en_1", "I2C interface enable.", "[0:0]", "read-only"),
+        ("sdio_data_strobe_phase_ctrl_1", "Data strobe delay chain select.", "[5:1]", "read-write"),
+        ("sdio_hbig_endian_1", "AHB bus interface endianness: 1: Big-endian AHB bus interface, 0: Little-endian AHB bus interface", "[6:6]", "read-write"),
+        ("sdio_m_hbig_endian_1", "AHB bus interface endianness: 1: Big-endian AHB bus interface, 0: Little-endian AHB bus interface", "[7:7]", "read-write"),
+        ("reset_ctrl_clr_reset_status_1", "", "[8:8]", "read-write"),
+        ("reset_ctrl_pll_timecnt_finish_1", "", "[9:9]", "read-only"),
+        ("reset_ctrl_rstn_sw_1", "", "[10:10]", "read-write"),
+        ("reset_ctrl_sys_reset_status_1", "", "[14:11]", "read-only")
     ]
 
     for idx in range(2, 7):
