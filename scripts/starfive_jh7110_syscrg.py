@@ -48,40 +48,40 @@ def generate_registers_starfive_jh7110_syscrg(dts, peripheral):
             [62, 12, 12, 12],
     ]
     for idx in range(0, 3):
-        txt += generate_registers_icg_divcfg("clk_gclk{}".format(idx), "Clock GCLK {}".format(idx), 0x58 + (idx * 4), mdmt[idx])
+        txt += generate_registers_icg_divcfg("clk_gclk_{}".format(idx), "Clock GCLK {}".format(idx), 0x58 + (idx * 4), mdmt[idx])
 
 
     for idx in range(0, 5):
-        txt += generate_registers_icg("clk_u7mc_core{}".format(idx), "U7MC Core Clock {}".format(idx), 0x64 + (idx * 4))
+        txt += generate_registers_icg("clk_u7mc_core_{}".format(idx), "U7MC Core Clock {}".format(idx), 0x64 + (idx * 4))
 
     txt += generate_registers_icg("clk_u7mc_debug", "U7MC Debug Clock", 0x78)
     txt += generate_registers_divcfg("u7mc_rtc_toggle", "U7MC RTC Toggle", 0x7c, [6, 6, 6, 6])
 
     for idx in range(0, 5):
-        txt += generate_registers_icg("clk_u7mc_trace{}".format(idx), "U7MC Trace Clock {}".format(idx), 0x80 + (idx * 4))
+        txt += generate_registers_icg("clk_u7mc_trace_{}".format(idx), "U7MC Trace Clock {}".format(idx), 0x80 + (idx * 4))
 
     txt += generate_registers_icg("clk_u7mc_trace_com", "U7MC Trace Clock COM", 0x94)
-    txt += generate_registers_icg("clk_u0_sft7110_noc_bus_clk_cpu_axi", "clk_u0_sft7110_noc_bus_clk_cpu_axi", 0x98)
-    txt += generate_registers_icg("clk_u0_sft7110_noc_bus_clk_axicfg0_axi", "clk_u0_sft7110_noc_bus_clk_axicfg0_axi", 0x9c)
+    txt += generate_registers_icg("clk_u0_noc_bus_cpu_axi", "clk_u0_sft7110_noc_bus_clk_cpu_axi", 0x98)
+    txt += generate_registers_icg("clk_u0_noc_bus_axicfg0_axi", "clk_u0_sft7110_noc_bus_clk_axicfg0_axi", 0x9c)
     txt += generate_registers_divcfg("clk_osc_div2", "clk_osc_div2", 0xa0, [2, 2, 2, 2])
     txt += generate_registers_divcfg("clk_pll1_div4", "clk_pll1_div4", 0xa4, [2, 2, 2, 2])
     txt += generate_registers_divcfg("clk_pll1_div8", "clk_pll1_div8", 0xa8, [2, 2, 2, 2])
     txt += generate_registers_mux_sel("clk_ddr_bus", "clk_ddr_bus", 0xac, "clk_osc_div2, clk_pll1_div4, clk_pll1_div8")
-    txt += generate_registers_icg("clk_u0_ddr_sft7110_clk_axi", "clk_u0_ddr_sfft7110_clk_axi", 0xb0)
+    txt += generate_registers_icg("clk_u0_ddr_axi", "clk_u0_ddr_axi", 0xb0)
     txt += generate_registers_divcfg("clk_gpu_core", "clk_gpu_core", 0xb4, [7, 3, 3, 3])
     txt += generate_registers_icg("clk_u0_img_gpu_core_clk", "clk_u0_img_gpu_core_clk", 0xb8)
     txt += generate_registers_icg("clk_u0_img_gpu_sys_clk", "clk_u0_img_gpu_sys_clk", 0xbc)
     txt += generate_registers_icg("clk_u0_img_gpu_clk_apb", "clk_u0_img_gpu_clk_apb", 0xc0)
     txt += generate_registers_icg_divcfg("clk_u0_gpu_rtc_toggle", "clk_u0_gpu_rtc_toggle", 0xc4, [12, 12, 12, 12])
-    txt += generate_registers_icg("clk_u0_sft7110_noc_bus_clk_gpu_axi", "clk_u0_sft7110_noc_bus_clk_gpu_axi", 0xc8)
-    txt += generate_registers_icg("clk_u0_dom_isp_top_clk_dom_isp_top_clk_ispcore_2x", "clk_u0_dom_isp_top_clk_dom_isp_top_clk_ispcore_2x", 0xcc)
-    txt += generate_registers_icg("clk_u0_dom_isp_top_clk_dom_isp_top_clk_isp_axi", "clk_u0_dom_isp_top_clk_dom_isp_top_clk_isp_axi", 0xd0)
-    txt += generate_registers_icg("clk_u0_sft7110_noc_bux_clk_isp_axi", "clk_u0_sft7110_noc_bux_clk_isp_axi", 0xd4)
+    txt += generate_registers_icg("clk_u0_noc_bus_gpu_axi", "clk_u0_sft7110_noc_bus_clk_gpu_axi", 0xc8)
+    txt += generate_registers_icg("clk_u0_isp_ispcore_2x", "clk_u0_dom_isp_top_clk_dom_isp_top_clk_ispcore_2x", 0xcc)
+    txt += generate_registers_icg("clk_u0_isp_axi", "clk_u0_dom_isp_top_clk_dom_isp_top_clk_isp_axi", 0xd0)
+    txt += generate_registers_icg("clk_u0_noc_bus_isp_axi", "clk_u0_sft7110_noc_bus_clk_isp_axi", 0xd4)
     txt += generate_registers_divcfg("clk_hifi4_core", "clk_hifi4_core", 0xd8, [15, 3, 3, 3])
     txt += generate_registers_divcfg("clk_hifi4_axi", "clk_hifi4_axi", 0xdc, [2, 2, 2, 2])
     txt += generate_registers_icg("clk_u0_axi_cfg1_dec_clk_main", "clk_u0_axi_cfg1_dec_clk_main", 0xe0)
     txt += generate_registers_icg("clk_u0_axi_cfg1_dec_clk_ahb", "clk_u0_axi_cfg1_dec_clk_ahb", 0xe4)
-    txt += generate_registers_icg("clk_u0_dom_vout_top_clk_dom_vout_top_clk_vout_src", "clk_u0_dom_vout_top_clk_dom_vout_top_clk_vout_src", 0xe8)
+    txt += generate_registers_icg("clk_u0_vout_src", "clk_u0_dom_vout_top_clk_dom_vout_top_clk_vout_src", 0xe8)
     txt += generate_registers_divcfg("clk_vout_axi_divcfg", "Clock Video Output AXI DIVCFG", 0xec, [7, 2, 2, 2])
     txt += generate_registers_icg("clk_noc_display_axi", "Clock NOC Display AXI", 0xf0)
     txt += generate_registers_icg("clk_vout_ahb", "Clock Video Output AHB", 0xf4)
@@ -138,7 +138,7 @@ def generate_registers_starfive_jh7110_syscrg(dts, peripheral):
     txt += generate_registers_icg_divcfg("clk_gmac0_ptp", "Clock GMAC 0 PTP", 0x1b4, [31, 10, 15, 25])
     txt += generate_registers_icg_divcfg("clk_gmac_phy", "Clock GMAC PHY", 0x1b8, [31, 10, 15, 25])
     txt += generate_registers_dly_chain_sel("clk_gmac0_gtxclk", "Clock GMAC 0 GTXC", 0x1bc)
-    txt += generate_registers_icg("clk_sys_iomux_pclk", "Clock SYS IOMUX PCLK", 0x1c0)
+    txt += generate_registers_icg("clk_pclk", "Clock SYS IOMUX PCLK", 0x1c0)
     txt += generate_registers_icg("clk_mbox_apb", "Clock Mailbox APB", 0x1c4)
     txt += generate_registers_icg("clk_internal_ctrl_apb", "Clock Internal Controller APB", 0x1c8)
 
@@ -153,7 +153,7 @@ def generate_registers_starfive_jh7110_syscrg(dts, peripheral):
     txt += generate_registers_icg("clk_tim_apb", "Clock Timer APB", 0x1f0)
 
     for idx in range(0, 4):
-        txt += generate_registers_icg("clk_tim{}".format(idx), "Clock Timer {}".format(idx), 0x1f4 + (idx * 4))
+        txt += generate_registers_icg("clk_tim_{}".format(idx), "Clock Timer {}".format(idx), 0x1f4 + (idx * 4))
 
     txt += generate_registers_icg("clk_temp_sensor_apb", "Clock Temperature Sensor APB", 0x204)
     txt += generate_registers_icg_divcfg("clk_temp_sensor", "Clock Temperature Sensor", 0x208, [24, 24, 24, 24])
@@ -203,15 +203,15 @@ def generate_registers_starfive_jh7110_syscrg(dts, peripheral):
     txt += generate_registers_mux_sel("clk_tdm", "Clock TDM", 0x2ec, "clk_tdm_internal, clk_tdm_ext")
     txt += generate_registers_clk_polarity("clk_tdm_neg", "Clock TDM Negative", 0x2f0)
 
-    txt += generate_registers_divcfg("clk_jtag_cert_trng", "Clock JTAG Certification TRNG", 0x2f4, [4, 4, 4, 4])
+    txt += generate_registers_divcfg("clk_jtag_trng", "Clock JTAG Certification TRNG", 0x2f4, [4, 4, 4, 4])
 
     for idx in range(0, 4):
-        name = "soft_rst{}_addr_sel".format(idx)
+        name = "soft_rst_addr_sel_{}".format(idx)
         desc = "Software RESET {} Address Selector".format(idx)
         txt += generate_registers_rst_sel(name, desc, idx, 0x2f8 + (idx * 4))
 
     for idx in range(0, 4):
-        name = "syscrg_rst{}_status".format(idx)
+        name = "syscrg_rst_status_{}".format(idx)
         desc = "SYSCRG RESET Status {}".format(idx)
         txt += generate_registers_rst_sel(name, desc, idx, 0x308 + (idx * 4))
 
