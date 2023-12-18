@@ -53,6 +53,14 @@ def generate_registers_riscv_clint0_msip(hart, addr):
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>32</size>
                   <resetValue>0</resetValue>
+                  <fields>
+                    <field>
+                      <name>control</name>
+                      <description></description>
+                      <bitRange>[0:0]</bitRange>
+                      <access>read-write</access>
+                    </field>
+                  </fields>
                 </register>
 """
 
@@ -65,6 +73,14 @@ def generate_registers_riscv_clint0_mtimecmp(hart, addr):
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>64</size>
                   <resetValue>0</resetValue>
+                  <fields>
+                    <field>
+                      <name>cycles</name>
+                      <description></description>
+                      <bitRange>[63:0]</bitRange>
+                      <access>read-write</access>
+                    </field>
+                  </fields>
                 </register>
 """
 
@@ -77,5 +93,13 @@ def generate_registers_riscv_clint0_mtime(addr):
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>64</size>
                   <resetValue>0</resetValue>
+                  <fields>
+                    <field>
+                      <name>cycles</name>
+                      <description></description>
+                      <bitRange>[63:0]</bitRange>
+                      <access>read-write</access>
+                    </field>
+                  </fields>
                 </register>
 """
