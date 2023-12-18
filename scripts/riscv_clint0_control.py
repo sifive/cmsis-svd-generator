@@ -51,6 +51,8 @@ def generate_registers_riscv_clint0_msip(hart, addr):
                   <name>msip_""" + hart + """</name>
                   <description>MSIP Register for hart """ + hart + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
+                  <size>32</size>
+                  <resetValue>0</resetValue>
                 </register>
 """
 
@@ -62,6 +64,7 @@ def generate_registers_riscv_clint0_mtimecmp(hart, addr):
                   <description>MTIMECMP Register for hart """ + hart + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>64</size>
+                  <resetValue>0</resetValue>
                 </register>
 """
 
@@ -73,5 +76,6 @@ def generate_registers_riscv_clint0_mtime(addr):
                   <description>MTIME Register</description>
                   <addressOffset>""" + addr + """</addressOffset>
                   <size>64</size>
+                  <resetValue>0</resetValue>
                 </register>
 """
