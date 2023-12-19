@@ -270,44 +270,44 @@ def generate_field_clk_polarity():
 def generate_field_rst_sel(idx):
     names = [
         [
-            "rstn_u0_jtag2apb_presetn", "rstn_u0_sys_syscon_presetn", "rstn_u0_sys_iomux_presetn", "rst_u0_u7mc_sft7110_rst_bus",
-            "rst_u0_u7mc_sft7110_debug_reset", "rst_u0_u7mc_sft7110_rst_core0", "rst_u0_u7mc_sft7110_rst_core1", "rst_u0_u7mc_sft7110_rst_core2",
-            "rst_u0_u7mc_sft7110_rst_core3", "rst_u0_u7mc_sft7110_rst_core4", "rst_u0_u7mc_sft7110_rst_core0_st", "rst_u0_u7mc_sft7110_rst_core1_st",
-            "rst_u0_u7mc_sft7110_rst_core2_st", "rst_u0_u7mc_sft7110_rst_core3_st", "rst_u0_u7mc_sft7110_rst_core4_st", "rst_u0_u7mc_sft7110_trace_rst0",
-            "rst_u0_u7mc_sft7110_trace_rst1", "rst_u0_u7mc_sft7110_trace_rst2", "rst_u0_u7mc_sft7110_trace_rst3", "rst_u0_u7mc_sft7110_trace_rst4",
-            "rst_u0_u7mc_sft7110_trace_com_rst", "rst_u0_img_gpu_rstn_apb", "rst_u0_img_gpu_rstn_doma", "rst_u0_u7mc_sft7110_noc_bus_reset_apb_bus_n",
-            "rst_u0_u7mc_sft7110_noc_bus_reset_axicfg0_axi_n", "rst_u0_u7mc_sft7110_noc_bus_reset_cpu_axi_n", "rst_u0_u7mc_sft7110_noc_bus_reset_disp_axi_n", "rst_u0_u7mc_sft7110_noc_bus_reset_gpu_axi_n",
-            "rst_u0_u7mc_sft7110_noc_bus_reset_isp_axi_n", "rst_u0_u7mc_sft7110_noc_bus_reset_ddrc_n", "rst_u0_u7mc_sft7110_noc_bus_reset_stg_axi_n", "rst_u0_u7mc_sft7110_noc_bus_reset_vdec_axi_n",
+            "u0_jtag2apb_presetn", "u0_sys_syscon_presetn", "u0_sys_iomux_presetn", "u0_bus",
+            "u0_debug", "u0_core_0", "u0_core_1", "u0_core_2",
+            "u0_core3", "u0_core4", "u0_core_st_0", "u0_core_st_1",
+            "u0_core_st_2", "u0_core_st_3", "u0_core_st_4", "u0_trace_0",
+            "u0_trace_1", "u0_trace_2", "u0_trace_3", "u0_trace_4",
+            "u0_trace_com", "u0_img_gpu_apb", "u0_img_gpu_doma", "u0_noc_bus_apb",
+            "u0_noc_bus_axicfg0", "u0_noc_bus_cpu_axi", "u0_noc_bus_disp_axi", "u0_noc_bus_gpu_axi",
+            "u0_noc_bus_isp_axi", "u0_noc_bus_ddrc", "u0_noc_bus_stg_axi", "u0_noc_bus_vdec_axi",
         ],
         [
-            "rstn_u0_sft7100_noc_bus_reset_venc_axi_n", "rstn_u0_axi_cfg1_dec_rstn_ahb", "rstn_u0_axi_cfg1_dec_rstn_main", "rstn_u0_axi_cfg0_dec_rstn_main",
-            "rstn_u0_axi_cfg0_dec_rstn_main_div", "rstn_u0_axi_cfg0_dec_rstn_hifi4", "rstn_u0_ddr_sft7110_rstn_axi", "rstn_u0_ddr_sft7110_rstn_osc",
-            "rstn_u0_ddr_sft7110_rstn_apb", "rstn_u0_dom_isp_top_rstn_dom_isp_top_ip_top_reset_n", "rstn_u0_dom_isp_top_rstn_dom_isp_top_rstn_isp_axi", "rstn_u0_dom_vout_top_rstn_dom_vout_top_rstn_vout_src",
-            "rstn_u0_codaj12_rstn_axi", "rstn_u0_codaj12_rstn_core", "rstn_u0_codaj12_rstn_apb", "rstn_u0_wave511_rstn_axi",
-            "rstn_u0_wave511_rstn_bpu", "rstn_u0_wave511_rstn_vce", "rstn_u0_wave511_rstn_apb", "rstn_u0_vdec_jpg_arb_jpgresetn",
-            "rstn_u0_vdec_jpg_arb_mainresetn", "rstn_u0_aximem_128b_rstn_axi", "rstn_u0_wave420l_rstn_axi", "rstn_u0_wave420l_rstn_bpu",
-            "rstn_u0_wave420l_rstn_vce", "rstn_u0_wave420l_rstn_apb", "rstn_u1_aximem_128b_rstn_axi", "rstn_u2_aximem_128b_rstn_axi",
-            "rstn_u0_intmem_rom_sram_rstn_rom", "rstn_u0_cdns_qspi_rstn_ahb", "rstn_u0_cdns_qspi_rstn_apb", "rstn_u0_cdns_qspi_rstn_ref",
+            "u0_noc_bus_venc_axi", "u0_axi_cfg1_dec_ahb", "u0_axi_cfg1_dec_main", "u0_axi_cfg0_dec_main",
+            "u0_axi_cfg0_dec_main_div", "u0_axi_cfg0_dec_hifi4", "u0_ddr_axi", "u0_ddr_osc",
+            "u0_ddr_apb", "u0_isp_top", "u0_isp_axi", "u0_vout_src",
+            "u0_codaj12_axi", "u0_codaj12_core", "u0_codaj12_apb", "u0_wave511_axi",
+            "u0_wave511_bpu", "u0_wave511_vce", "u0_wave511_apb", "u0_vdec_jpg_arb",
+            "u0_vdec_jpg_arb_main", "u0_aximem_128b_axi", "u0_wave420l_axi", "u0_wave420l_bpu",
+            "u0_wave420l_vce", "u0_wave420l_apb", "u1_aximem", "u2_aximem",
+            "u0_intmem_rom_sram", "u0_qspi_ahb", "u0_qspi_apb", "u0_qspi_ref",
         ],
         [
-            "rstn_u0_sdio_rstn_ahb", "rstn_u1_sdi_rstn_ahb", "rstn_u1_gmac5_axi64_aresetn_i", "rstn_u1_gmac5_axi64_hresetn_n",
-            "rstn_u0_mailbox_presetn", "rstn_u0_ssp_spi_rstn_apb", "rstn_u1_ssp_spi_rstn_apb", "rstn_u2_ssp_spi_rstn_apb",
-            "rstn_u3_ssp_spi_rstn_apb", "rstn_u4_ssp_spi_rstn_apb", "rstn_u5_ssp_spi_rstn_apb", "rstn_u6_ssp_spi_rstn_apb",
-            "rstn_u0_i2c_rstn_apb", "rstn_u1_i2c_rstn_apb", "rstn_u2_i2c_rstn_apb", "rstn_u3_i2c_rstn_apb",
-            "rstn_u4_i2c_rstn_apb", "rstn_u5_i2c_rstn_apb", "rstn_u6_i2c_rstn_apb", "rstn_u0_uart_rstn_apb",
-            "rstn_u0_uart_rstn_core", "rstn_u1_uart_rstn_apb", "rstn_u1_uart_rstn_core", "rstn_u2_uart_rstn_apb",
-            "rstn_u2_uart_rstn_core", "rstn_u3_uart_rstn_apb", "rstn_u3_uart_rstn_core", "rstn_u4_uart_rstn_apb",
-            "rstn_u4_uart_rstn_core", "rstn_u5_uart_rstn_apb", "rstn_u6_uart_rstn_core", "rstn_u0_cdns_spdif_rstn_apb",
+            "u0_sdio_ahb", "u1_sdi_ahb", "u1_gmac5_axi64", "u1_gmac5_axi64_hresetn",
+            "u0_mailbox_presetn", "u0_spi_apb", "u1_spi_apb", "u2_spi_apb",
+            "u3_spi_apb", "u4_spi_apb", "u5_spi_apb", "u6_spi_apb",
+            "u0_i2c_apb", "u1_i2c_apb", "u2_i2c_apb", "u3_i2c_apb",
+            "u4_i2c_apb", "u5_i2c_apb", "u6_i2c_apb", "u0_uart_apb",
+            "u0_uart_core", "u1_uart_apb", "u1_uart_core", "u2_uart_apb",
+            "u2_uart_core", "u3_uart_apb", "u3_uart_core", "u4_uart_apb",
+            "u4_uart_core", "u5_uart_apb", "u6_uart_core", "u0_spdif_apb",
         ],
         [
-            "rstn_u0_pwmdac_rstn_apb", "rstn_u0_pdm_4mic_rstn_dmic", "rstn_u0_pdm_4mic_rstn_apb", "rstn_u0_i2srx_3ch_rstn_apb",
-            "rstn_u0_i2srx_3ch_rstn_bclk", "rstn_u0_i2stx_4ch_rstn_apb", "rstn_u0_i2stx_4ch_rstn_bclk", "rstn_u1_i2stx_4ch_rstn_apb",
-            "rstn_u1_i2stx_4ch_rstn_bclk", "rstn_u0_tdm16slot_rstn_ahb", "rstn_u0_tdm16slot_rstn_tdm", "rstn_u0_tdm16slot_rstn_apb",
-            "rstn_u0_pwm_8ch_rstn_apb", "rstn_u0_dskit_wdt_rstn_apb", "rstn_u0_dskit_wdt_rstn_wdt", "rstn_u0_can_ctrl_rstn_apb",
-            "rstn_u0_can_ctrl_rstn_can", "rstn_u0_can_ctrl_rstn_timer", "rstn_u1_can_ctrl_rstn_apb", "rstn_u1_can_ctrl_rstn_can",
-            "rstn_u1_can_ctrl_rstn_timer", "rstn_u0_si5_timer_rstn_apb", "rstn_u0_si5_timer_rstn_timer0", "rstn_u0_si5_timer_rstn_time10",
-            "rstn_u0_si5_timer_rstn_timer2", "rstn_u0_si5_timer_rstn_timer3", "rstn_u0_int_ctrl_rstn_apb", "rstn_u0_temp_sensor_rstn_apb",
-            "rstn_u0_temp_sensor_rstn_temp", "rstn_u0_jtag_certification_rst_n", "", "",
+            "u0_pwmdac_apb", "u0_pdm_4mic_dmic", "u0_pdm_4mic_apb", "u0_i2srx_apb",
+            "u0_i2srx_bclk", "u0_i2stx_apb", "u0_i2stx_bclk", "u1_i2stx_apb",
+            "u1_i2stx_bclk", "u0_tdm16slot_ahb", "u0_tdm16slot_tdm", "u0_tdm16slot_apb",
+            "u0_pwm_apb", "u0_dskit_wdt_rstn_apb", "u0_dskit_wdt", "u0_can_ctrl_apb",
+            "u0_can_ctrl", "u0_can_ctrl_timer", "u1_can_ctrl_apb", "u1_can_ctrl_can",
+            "u1_can_ctrl_timer", "u0_si5_timer_apb", "u0_si5_timer_0", "u0_si5_timer_1",
+            "u0_si5_timer_2", "u0_si5_timer_3", "u0_int_ctrl_apb", "u0_temp_sensor_apb",
+            "u0_temp_sensor", "u0_jtag_rst", "", "",
         ],
     ]
 
@@ -317,12 +317,12 @@ def generate_field_rst_sel(idx):
 
 def generate_field_rst_stat():
     names = [
-        "rstn_u0_stg_syscon_presetn", "rst_u0_hifi4_rst_core", "rst_u0_hifi4_rst_axi", "rstn_u0_sec_top_hreesetn",
-        "rst_u0_e2_sft7110_rst_core", "rstn_u0_dma1p_8ch_56hs_rstn_axi", "rstn_u0_dma1p_8ch_56hs_rstn_ahb", "rstn_u0_cdn_usb_rstn_axi",
-        "rstn_u0_cdn_usb_rstn_usb_apb", "rstn_u0_cdn_usb_rstn_utmi_apb", "rstn_u0_cdn_usb_rstn_pwrup", "rstn_u0_plda_pcie_rstn_axi_mst0",
-        "rstn_u0_plda_pcie_rstn_axi_slv0", "rstn_u0_plda_pcie_rstn_axi_slv", "rstn_u0_plda_pci_rstn_brg", "rstn_u0_plda_pcie_rstn_pcie",
-        "rstn_u0_plda_pcie_rstn_apb", "rstn_u1_plda_pcie_rstn_axi_mst0", "rstn_u1_plda_pcie_rstn_axi_slv0", "rstn_u1_plda_pcie_rstn_axi_slv",
-        "rstn_u1_plda_pcie_rstn_brg", "rstn_u1_plda_pcie_rstn_pcie", "rstn_u1_plda_pcie_rstn_apb",
+        "u0_stg_syscon_presetn", "u0_hifi4_core", "u0_hifi4_axi", "u0_sec_top_hreesetn",
+        "u0_e2_core", "u0_dma_axi", "u0_dma_ahb", "u0_usb_axi",
+        "u0_usb_apb", "u0_usb_utmi_apb", "u0_usb_pwrup", "u0_pcie_axi_mst0",
+        "u0_pcie_axi_slv0", "u0_pcie_axi_slv", "u0_pci_brg", "u0_pcie_pcie",
+        "u0_pcie_apb", "u1_pcie_axi_mst0", "u1_pcie_axi_slv0", "u1_pcie_axi_slv",
+        "u1_pcie_brg", "u1_pcie_pcie", "u1_pcie_apb",
     ]
 
     desc = "1: Assert reset, 0: De-assert reset"
@@ -331,8 +331,8 @@ def generate_field_rst_stat():
 
 def generate_field_aon_rst_sel():
     names = [
-            "gmac5_axi64_rstn_axi", "gmac5_axi64_rstn_ahb", "aon_iomux_presetn", "pmu_rstn_apb",
-            "pmu_rstn_wkup", "rtc_hms_rstn_apb", "rtc_hms_rstn_cal", "rtc_hms_rstn_osc32k",
+            "gmac5_axi64_axi", "gmac5_axi64_ahb", "aon_iomux_presetn", "pmu_apb",
+            "pmu_wkup", "rtc_hms_apb", "rtc_hms_cal", "rtc_hms_osc32k",
     ]
 
     desc = "1: Assert reset, 0: De-assert reset"
