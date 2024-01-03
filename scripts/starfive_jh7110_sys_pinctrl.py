@@ -70,10 +70,11 @@ def generate_register_fmux_gpo_dout(idx, base):
         0x20001e1f, 0x4b00494a, 0x58005657, 0x5f005d5e,
     ]
 
-    gpo_base = (idx - base) * 4
+    gpo_num = idx - base
+    gpo_base = gpo_num * 4
     gpo_end = gpo_base + 3
 
-    name = "gpo_dout_{}_{}".format(gpo_base, gpo_end)
+    name = "gpo_dout_{}".format(gpo_num)
     desc = "SYS IOMUX CFG SAIF SYSCFG FMUX GPIO {}-{} DOUT".format(gpo_base, gpo_end)
     addr = idx * 4
 
