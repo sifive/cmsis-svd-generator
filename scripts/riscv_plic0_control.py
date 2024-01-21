@@ -77,6 +77,16 @@ def generate_registers_riscv_plic0_priority(intr, addr):
                   <name>priority_""" + intr + """</name>
                   <description>PRIORITY Register for interrupt id """ + intr + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
+                  <size>32</size>
+                  <resetValue>0</resetValue>
+                  <fields>
+                    <field>
+                      <name>priority</name>
+                      <description></description>
+                      <bitRange>[31:0]</bitRange>
+                      <access>read-write</access>
+                    </field>
+                  </fields>
                 </register>
 """
 
@@ -88,6 +98,16 @@ def generate_registers_riscv_plic0_pending(inta, inth, intl, addr):
                   <name>pending_""" + inta + """</name>
                   <description>PENDING Register for interrupt ids """ + temp + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
+                  <size>32</size>
+                  <resetValue>0</resetValue>
+                  <fields>
+                    <field>
+                      <name>pending</name>
+                      <description></description>
+                      <bitRange>[31:0]</bitRange>
+                      <access>read-write</access>
+                    </field>
+                  </fields>
                 </register>
 """
 
@@ -99,6 +119,15 @@ def generate_registers_riscv_plic0_enable(inta, inth, intl, hart, addr):
                   <name>enable_""" + inta + """_""" + hart + """</name>
                   <description>ENABLE Register for interrupt ids """ + temp + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
+                  <resetValue>0</resetValue>
+                  <fields>
+                    <field>
+                      <name>enable</name>
+                      <description></description>
+                      <bitRange>[31:0]</bitRange>
+                      <access>read-write</access>
+                    </field>
+                  </fields>
                 </register>
 """
 
@@ -109,6 +138,16 @@ def generate_registers_riscv_plic0_threshold(hart, addr):
                   <name>threshold_""" + hart + """</name>
                   <description>PRIORITY THRESHOLD Register for hart """ + hart + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
+                  <size>32</size>
+                  <resetValue>0</resetValue>
+                  <fields>
+                    <field>
+                      <name>priority</name>
+                      <description></description>
+                      <bitRange>[31:0]</bitRange>
+                      <access>read-write</access>
+                    </field>
+                  </fields>
                 </register>
 """
 
@@ -119,5 +158,15 @@ def generate_registers_riscv_plic0_claimplete(hart, addr):
                   <name>claimplete_""" + hart + """</name>
                   <description>CLAIM and COMPLETE Register for hart """ + hart + """</description>
                   <addressOffset>""" + addr + """</addressOffset>
+                  <size>32</size>
+                  <resetValue>0</resetValue>
+                  <fields>
+                    <field>
+                      <name>claimplete</name>
+                      <description></description>
+                      <bitRange>[31:0]</bitRange>
+                      <access>read-write</access>
+                    </field>
+                  </fields>
                 </register>
 """
