@@ -230,6 +230,18 @@ def generate_register(name, desc, addr, field_name_desc_range_access, size=32, r
                 </register>
 """
 
+def generate_register_arr(name, desc, addr, dim, dim_inc, reset_value=0):
+    return """\
+                <register>
+                  <dim>""" + str(dim) + """</dim>
+                  <dimIncrement>""" + "{:#x}".format(dim_inc) + """</dimIncrement>
+                  <name>""" + name + """[%s]</name>
+                  <description>""" + desc + """</description>
+                  <addressOffset>""" + "{:#x}".format(addr) + """</addressOffset>
+                  <resetValue>""" + str(reset_value) + """</resetValue>
+                </register>
+"""
+
 def generate_field(name, desc, bit_range, access):
     if len(desc) == 0:
         desc = name

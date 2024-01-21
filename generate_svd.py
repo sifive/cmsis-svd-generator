@@ -20,6 +20,8 @@ from scripts.riscv_plic0_control import generate_registers_riscv_plic0
 from scripts.snps_designware_i2c import generate_registers_snps_designware_i2c
 from scripts.snps_dw_apb_uart import generate_registers_snps_dw_apb_uart
 from scripts.starfive_common import generate_interrupt
+from scripts.starfive_jh7110_dmc_ctrl import generate_registers_starfive_jh7110_dmc_ctrl
+from scripts.starfive_jh7110_dmc_phy import generate_registers_starfive_jh7110_dmc_phy
 from scripts.starfive_jh7110_pmu import generate_registers_starfive_jh7110_pmu
 from scripts.starfive_jh7110_stgcrg import generate_registers_starfive_jh7110_stgcrg
 from scripts.starfive_jh7110_syscrg import generate_registers_starfive_jh7110_syscrg
@@ -124,13 +126,13 @@ def generate_peripherals(dts):
 
                     if "clint" in comp and not os.path.exists(script_path):
                         regmap_path = ""
-                        script_path = os.path.join(regmap_root, "scripts", "riscv_clint0_control.py") 
+                        script_path = os.path.join(regmap_root, "scripts", "riscv_clint0_control.py")
                     elif "plic" in comp and not os.path.exists(script_path):
                         regmap_path = ""
-                        script_path = os.path.join(regmap_root, "scripts", "riscv_plic0_control.py") 
+                        script_path = os.path.join(regmap_root, "scripts", "riscv_plic0_control.py")
                     elif "clic" in comp and not os.path.exists(script_path):
                         regmap_path = ""
-                        script_path = os.path.join(regmap_root, "scripts", "sifive_clic0_control.py") 
+                        script_path = os.path.join(regmap_root, "scripts", "sifive_clic0_control.py")
 
                     if os.path.exists(regmap_path):
                         ext = str(idx[comp])
@@ -211,6 +213,10 @@ def generate_peripheral(dts, peripheral, comp, ext, reg, regmap_path):
         name = "pwm"
     elif regmap_path.endswith("starfive_jh7110_trng.py"):
         name = "trng"
+    elif regmap_path.endswith("starfive_jh7110_dmc_ctrl.py"):
+        name = "dmc_ctrl"
+    elif regmap_path.endswith("starfive_jh7110_dmc_phy.py"):
+        name = "dmc_phy"
     else:
         name = "{}_{}".format(get_name_as_id(comp), ext)
 
@@ -251,6 +257,10 @@ def generate_registers(dts, peripheral, regmap_path):
         return generate_registers_snps_designware_i2c(dts, peripheral)
     if regmap_path.endswith("snps_dw_apb_uart.py"):
         return generate_registers_snps_dw_apb_uart(dts, peripheral)
+    if regmap_path.endswith("starfive_jh7110_dmc_ctrl.py"):
+        return generate_registers_starfive_jh7110_dmc_ctrl(dts, peripheral)
+    if regmap_path.endswith("starfive_jh7110_dmc_phy.py"):
+        return generate_registers_starfive_jh7110_dmc_phy(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_pmu.py"):
         return generate_registers_starfive_jh7110_pmu(dts, peripheral)
     if regmap_path.endswith("starfive_jh7110_syscrg.py"):
