@@ -1,5 +1,5 @@
 #!/usr/bin/env python3
-# Copyright (c) 2019-2022 SiFive Inc.
+# Copyright (c) 2019-2024 SiFive Inc.
 # SPDX-License-Identifier: Apache-2.0
 
 """
@@ -13,6 +13,7 @@ import inspect
 import pydevicetree
 from xmlschema import XMLSchema
 from scripts.riscv_clint0_control import generate_registers_riscv_clint0
+from scripts.sifive_clint2_control import generate_registers_sifive_clint2
 from scripts.sifive_clic0_control import generate_registers_sifive_clic0
 from scripts.sifive_clic1_control import generate_registers_sifive_clic1
 from scripts.riscv_plic0_control import generate_registers_riscv_plic0
@@ -116,6 +117,8 @@ def generate_registers(dts, peripheral, regmap_path):
     """Generate xml string for registers from regmap file or generator code"""
     if regmap_path.endswith("riscv_clint0_control.py"):
         return generate_registers_riscv_clint0(dts)
+    if regmap_path.endswith("sifive_clint2_control.py"):
+        return generate_registers_sifive_clint2(dts)
     if regmap_path.endswith("sifive_clic0_control.py"):
         return generate_registers_sifive_clic0(dts, peripheral)
     if regmap_path.endswith("sifive_clic1_control.py"):
@@ -159,3 +162,4 @@ def main(argv):
 
 if __name__ == "__main__":
     main(sys.argv[1:])
+
